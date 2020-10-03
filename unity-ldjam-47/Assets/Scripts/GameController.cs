@@ -95,10 +95,9 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        UIOptionsMenu.SetActive(false);
-        UIGame.SetActive(false);
+        //ShowMainMenu();
 
-        UIMainMenu.SetActive(true);
+        ShowGame();
 
     }
 
@@ -115,27 +114,39 @@ public class GameController : MonoBehaviour
 
         if (action.Contains(GameActionKeys.buttonPlay))
         {
-            UIMainMenu.SetActive(false);
-            UIOptionsMenu.SetActive(false);
-
-            UIGame.SetActive(true);
+            ShowGame();
         }
         else if (action.Contains(GameActionKeys.buttonOptions))
         {
-            UIMainMenu.SetActive(false);
-            UIGame.SetActive(false);
-
-            UIOptionsMenu.SetActive(true);
+            ShowOptionsMenu();
         }
         else if (action.Contains(GameActionKeys.buttonBackToMenu))
         {
-            UIOptionsMenu.SetActive(false);
-            UIGame.SetActive(false);
-
-            UIMainMenu.SetActive(true);
-
+            ShowMainMenu();
         }
 
+    }
+
+    private void ShowMainMenu()
+    {
+        UIOptionsMenu.SetActive(false);
+        UIGame.SetActive(false);
+
+        UIMainMenu.SetActive(true);
+    }
+    private void ShowOptionsMenu()
+    {
+        UIMainMenu.SetActive(false);
+        UIGame.SetActive(false);
+
+        UIOptionsMenu.SetActive(true);
+    }
+    private void ShowGame()
+    {
+        UIMainMenu.SetActive(false);
+        UIOptionsMenu.SetActive(false);
+
+        UIGame.SetActive(true);
     }
 
 }
