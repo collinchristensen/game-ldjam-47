@@ -106,7 +106,8 @@ public class GameLevelGen : MonoBehaviour
 
         //GenerateStartHub();
 
-        GenerateLevel("hub-1-0-start", 0, 0);
+        Chunk spawnPointHub;
+        spawnPointHub = GenerateLevel("hub-1-0-start", 0, 0);
         //GenerateLevel("megadungeon-1-0", 0, 0);
 
         //for (int i = 1; i < 25; i++)
@@ -119,6 +120,8 @@ public class GameLevelGen : MonoBehaviour
         //}
 
         // after generation complete, rotate level transform
+
+        CopyLevel(spawnPointHub, 10,10);
 
         assetHolder.RotateLevel();
     }
@@ -153,7 +156,7 @@ public class GameLevelGen : MonoBehaviour
         return jsonLevelDictionary;
     }
 
-    public void GenerateLevel(string code, int xOffset, int yOffset)
+    public Chunk GenerateLevel(string code, int xOffset, int yOffset)
     {
         LevelObject levelObject = levelObjectDictionary[code];
 
@@ -165,7 +168,7 @@ public class GameLevelGen : MonoBehaviour
         //GenerateHub(levelObject, xOffset, yOffset);
 
 
-        ParseLevelData(levelObject, xOffset, yOffset);
+        return ParseLevelData(levelObject, xOffset, yOffset);
     }
 
     //public void GenerateHub(LevelObject levelObject, int xOffset, int yOffset)
@@ -173,7 +176,27 @@ public class GameLevelGen : MonoBehaviour
     //    ParseLevelData(levelObject.Data, xOffset, yOffset);
     //}
 
-    private void ParseLevelData(LevelObject levelObject, int xOffset, int yOffset)
+    private void CopyLevel(Chunk spawnPointHub, int xOffset, int yOffset)
+    {
+        List<List<GameObject>> chunkTiles = spawnPointHub.Tiles;
+
+        int x = xOffset;
+        int y = chunkTiles.Count + yOffset;
+
+        foreach (List<GameObject> chunkRows in chunkTiles)
+        {
+            x = xOffset;
+            foreach (GameObject chunkColumn in chunkRows)
+            {
+                assetHolder.SpawnObject(chunkColumn, x, y);
+
+                x++;
+            }
+            y--;
+        }
+    }
+
+    private Chunk ParseLevelData(LevelObject levelObject, int xOffset, int yOffset)
     {
         Debug.Log("started parsing level data");
 
@@ -267,11 +290,18 @@ public class GameLevelGen : MonoBehaviour
                     }
                 }
 
+                chunkRow.Add(permanentTile);
+
                 x++;
             }
+            chunkColumns.Add(chunkRow);
 
             y--;
         }
+
+        chunk.Tiles = chunkColumns;
+
+        return chunk;
     }
 
     // spawn enemy or item
