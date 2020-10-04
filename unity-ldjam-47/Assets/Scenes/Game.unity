@@ -269,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 171024941}
   - component: {fileID: 171024942}
+  - component: {fileID: 171024943}
   m_Layer: 0
   m_Name: CurvedShader
   m_TagString: Untagged
@@ -297,16 +298,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171024940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a23a575bdd1724ba48a70bf35ee256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_curveOrigin: {fileID: 1663922518}
   m_curvatureScale: 5120
+  m_yCurvature: 1
+  m_zCurvature: 0
+  m_yFlatMargin: 0
+  m_zFlatMargin: 0
+--- !u!114 &171024943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171024940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80371fcf9573ff24b9f46a9dd1dca54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_curveOrigin: {fileID: 1663922518}
+  m_curvatureScale: 5120
   m_xCurvature: 1
   m_zCurvature: 0
-  m_xFlatMargin: 1
+  m_xFlatMargin: 0
   m_zFlatMargin: 0
 --- !u!1 &298294930
 GameObject:

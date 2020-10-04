@@ -146,7 +146,7 @@ public class GameLevelGen : MonoBehaviour
 
         // after generation complete, rotate level transform
 
-        assetHolder.RotateLevel();
+        //assetHolder.RotateLevel();
     }
 
     public void UpdateLevelData()
