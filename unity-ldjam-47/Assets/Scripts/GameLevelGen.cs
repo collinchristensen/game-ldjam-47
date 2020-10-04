@@ -65,7 +65,7 @@ public class Chunk
 {
     public string Type { get; set; }
 
-    public List<GameObject> Tiles { get; set; }
+    public List<List<GameObject>> Tiles { get; set; }
 }
 
 public class GameLevelGen : MonoBehaviour
@@ -153,11 +153,6 @@ public class GameLevelGen : MonoBehaviour
         return jsonLevelDictionary;
     }
 
-    //public void GenerateLevel(string code)
-    //{
-    //    GenerateLevel(code, 0, 0);
-    //}
-
     public void GenerateLevel(string code, int xOffset, int yOffset)
     {
         LevelObject levelObject = levelObjectDictionary[code];
@@ -167,33 +162,35 @@ public class GameLevelGen : MonoBehaviour
         //    GenerateHub(levelObject, xOffset, yOffset);
         //}
 
-        GenerateHub(levelObject, xOffset, yOffset);
+        //GenerateHub(levelObject, xOffset, yOffset);
+
+
+        ParseLevelData(levelObject, xOffset, yOffset);
     }
 
-    //public void GenerateHub(LevelObject levelObject)
+    //public void GenerateHub(LevelObject levelObject, int xOffset, int yOffset)
     //{
-    //    GenerateHub(levelObject, 0, 0);
+    //    ParseLevelData(levelObject.Data, xOffset, yOffset);
     //}
 
-    public void GenerateHub(LevelObject levelObject, int xOffset, int yOffset)
-    {
-        ParseLevelData(levelObject.Data, xOffset, yOffset);
-    }
-
-    //private void ParseLevelData(List<string> data)
-    //{
-    //    ParseLevelData(data, 0, 0);
-    //}
-
-    private void ParseLevelData(List<string> data, int xOffset, int yOffset)
+    private void ParseLevelData(LevelObject levelObject, int xOffset, int yOffset)
     {
         Debug.Log("started parsing level data");
+
+        List<string> data = levelObject.Data;
 
         int x = xOffset;
         int y = data.Count + yOffset;
 
+        Chunk chunk = new Chunk();
+        chunk.Type = levelObject.Type;
+
+        List<List<GameObject>> chunkColumns = new List<List<GameObject>>();
+
         foreach (string row in data)
         {
+            List<GameObject> chunkRow = new List<GameObject>();
+
             char[] columns = row.ToCharArray();
 
             x = xOffset;
@@ -212,11 +209,11 @@ public class GameLevelGen : MonoBehaviour
                 }
                 else if (column == GameAssetCodes.blankRandom)
                 {
-                    permanentTile = SpawnWallWithProbability(x, y, 1, 3);
+                    permanentTile = SpawnWallWithProbability(x, y, 1, 4);
                 }
                 else if (column == GameAssetCodes.optionalPath)
                 {
-                    permanentTile = SpawnWallWithProbability(x, y, 1, 4);
+                    permanentTile = SpawnWallWithProbability(x, y, 1, 5);
                 }
                 else if (column == GameAssetCodes.optionalWall)
                 {
@@ -411,119 +408,6 @@ public class GameLevelGen : MonoBehaviour
 
         return assetHolder.SpawnObject(assetHolder.walls[choice], x, y);
     }
-
-    //private void SpawnPortal(int x, int y)
-    //{
-    //    SpawnEmptyFloor(x, y);
-    //    assetHolder.SpawnObject(assetHolder.portal, x, y);
-    //}
-
-    //private void SpawnItem(int x, int y, string itemName)
-    //{
-    //    SpawnEmptyFloor(x, y);
-    //    SpawnRandomItem(x, y);
-    //}
-
-    //// Spawn floor with small chance of good item
-    //private void SpawnRandomFloor(int x, int y)
-    //{
-    //    int selected = Random.Range(0, assetHolder.floors.Count);
-
-    //    SpawnSelectedFloor(selected, x, y);
-
-    //    // small chance of spawning item
-    //    int chance = Random.Range(1, 10);
-
-    //    if (chance == 1)
-    //    {
-    //        SpawnRandomItem(x, y);
-    //    }
-
-    //}
-
-    //// Spawn floor with small chance of good item
-    //private void SpawnEmptyFloor(int x, int y)
-    //{
-    //    int selected = Random.Range(0, assetHolder.floors.Count);
-
-    //    SpawnSelectedFloor(selected, x, y);
-
-    //}
-
-    //private void SpawnSelectedFloor(int selected, int x, int y)
-    //{
-    //    assetHolder.SpawnObject(assetHolder.floors[selected], x, y);
-    //}
-
-    //private void SpawnRandomWall(int x, int y)
-    //{
-    //    int wallsCount = assetHolder.walls.Count;
-
-    //    int selected = Random.Range(0, wallsCount);
-
-    //    assetHolder.SpawnObject(assetHolder.walls[selected], x, y);
-    //}
-
-    //private void SpawnSpawnPoint(int x, int y)
-    //{
-    //    // TODO: add persistent spawnpoint
-
-    //    assetHolder.SpawnObject(assetHolder.player, x, y);
-
-    //}
-
-    //// Spawn entity, either item or enemy
-    //private void SpawnRandomEntity(int x, int y)
-    //{
-    //    // TODO: add enemies and items
-
-    //    // spawn item or enemy with 75% chance enemy
-    //    int chance = Random.Range(1, 4);
-
-    //    if (chance == 1)
-    //    {
-    //        SpawnRandomItem(x, y);
-    //    }
-    //    else
-    //    {
-    //        SpawnRandomEnemy(x, y);
-    //    }
-
-    //    assetHolder.SpawnObject(assetHolder.floors[2], x, y);
-    //}
-
-    //private void SpawnDoor(int x, int y)
-    //{
-    //    assetHolder.SpawnObject(assetHolder.door, x, y);
-    //}
-
-    //private void SpawnRandomEnemy(int x, int y)
-    //{
-    //    assetHolder.SpawnObject(assetHolder.floors[2], x, y);
-    //}
-
-    //// Spawn good item
-    //private void SpawnRandomItem(int x, int y, float v, int v1)
-    //{
-
-    //    // spawn item, better items have lower chance
-
-    //    int chance = Random.Range(1, 10);
-
-    //    if (chance == 1)
-    //    {
-    //        SpawnItem(x, y, ItemCodes.goldblock);
-    //    }
-    //    else if (chance < 3)
-    //    {
-    //        SpawnItem(x, y, ItemCodes.treasure);
-    //    }
-    //    else
-    //    {
-    //        SpawnItem(x, y, ItemCodes.coin);
-    //    }
-
-    //}
 
     public void DebugPrintLevelData()
     {

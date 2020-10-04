@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_curveOrigin: {fileID: 1663922518}
-  m_curvatureScale: 4000
+  m_curvatureScale: 5120
   m_xCurvature: 1
   m_zCurvature: 0
   m_xFlatMargin: 1
