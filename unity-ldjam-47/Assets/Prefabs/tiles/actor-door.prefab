@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5725067404888621417}
   - component: {fileID: 881789662}
   m_Layer: 0
-  m_Name: tile-door
+  m_Name: actor-door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
