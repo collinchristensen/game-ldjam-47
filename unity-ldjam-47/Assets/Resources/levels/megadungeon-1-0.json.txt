@@ -1,0 +1,16 @@
+﻿{
+  "code":"megadungeon-1-0",
+  "type":"megadungeon",
+  "size":"21x9",
+  "data" : [
+    "WWWWWWWWWWPWWWWWWWWWW",
+    "W-EE---T-------C----W",
+    "W--------C----CCC---W",
+    "W---C-----T-C--C----W",
+    "W-C---C--TGT--------W",
+    "WCCC------T--C---C--W",
+    "W-C-----C------EE---W",
+    "W-EE-----------C--E-W",
+    "WWWWWWWWWWPWWWWWWWWWW"
+   ]
+}

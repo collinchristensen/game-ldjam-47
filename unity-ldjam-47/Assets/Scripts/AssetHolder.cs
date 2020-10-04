@@ -7,7 +7,6 @@ public class AssetHolder : MonoBehaviour
     public GameObject player;
 
     public List<GameObject> floors;
-
     public List<GameObject> walls;
 
     public GameObject door;
@@ -15,22 +14,28 @@ public class AssetHolder : MonoBehaviour
     public List<GameObject> enemies;
 
     public GameObject portal;
-    public GameObject treasure;
-    public GameObject coin;
-    public GameObject ladder;
 
+    public GameObject coin;
+    public GameObject treasure;
+    public GameObject goldBlock;
+
+    //public GameObject ladder;
 
     public Transform levelsTransform;
 
-    public void SpawnObject(GameObject go, int x, int y)
+    public GameObject SpawnObject(GameObject go, int x, int y)
     {
-        SpawnObject(go, levelsTransform, x, y);
+        return SpawnObject(go, levelsTransform, x, y);
     }
 
-    public void SpawnObject(GameObject go, Transform levelsTransform, int x, int y)
+    public GameObject SpawnObject(GameObject go, Transform levelsTransform, int x, int y)
     {
+        GameObject temp;
+
         Vector3 pos = new Vector3(x, y);
-        Instantiate(go, pos, Quaternion.identity, levelsTransform);
+        temp = Instantiate(go, pos, Quaternion.identity, levelsTransform);
+
+        return temp;
     }
 
     public void RotateLevel()

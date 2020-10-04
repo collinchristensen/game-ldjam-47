@@ -1015,6 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetHolder: {fileID: 857803665}
+  hubCount: 9
 --- !u!1 &629779913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,14 +1354,16 @@ MonoBehaviour:
   walls:
   - {fileID: 1195371281584653198, guid: 50c1ba3915895dd4c973226cb2383fcb, type: 3}
   - {fileID: 3212753267644493152, guid: c97a19ff41e2f76409e6ef0fa9a4d46b, type: 3}
-  - {fileID: 5872442861851593285, guid: 95e76a2290e1be14db32fda7273ad73f, type: 3}
   - {fileID: 2432475559930338770, guid: 955d88a3e62548e4aa7db9ccc243dd8a, type: 3}
   door: {fileID: 5725067404888621418, guid: a48bd37803fa5514a8b9af071b9a7f11, type: 3}
-  enemies: []
-  portal: {fileID: 0}
-  treasure: {fileID: 0}
+  enemies:
+  - {fileID: 3370960422873381480, guid: 4a8e0e12f355fdb489c5c38b8fa02fdb, type: 3}
+  - {fileID: 3226861225894247006, guid: 0e23fa0e12231a7439dd4f5b9bfef14a, type: 3}
+  - {fileID: 6621978083007181932, guid: 807024e02d842e949a59d1e4e97ee553, type: 3}
+  portal: {fileID: 5725067404888621418, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
   coin: {fileID: 8934616860536004040, guid: a395cf71d9457524f811fa5213b4dd45, type: 3}
-  ladder: {fileID: 0}
+  treasure: {fileID: 798280831653865977, guid: 5c8335a8b30a84a439531e8b01248441, type: 3}
+  goldBlock: {fileID: 5106849288139541175, guid: fc260124f583f8a458136e9d292d819a, type: 3}
   levelsTransform: {fileID: 1410204135}
 --- !u!1 &885301597
 GameObject:
@@ -2749,6 +2752,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907001843}
   m_CullTransparentMesh: 0
+--- !u!1001 &1907571524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5725067403946968688, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621417, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725067404888621418, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
+      propertyPath: m_Name
+      value: actor-portal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44ff717859679aa448ae6bef005cfb61, type: 3}
 --- !u!1 &1938899153
 GameObject:
   m_ObjectHideFlags: 0

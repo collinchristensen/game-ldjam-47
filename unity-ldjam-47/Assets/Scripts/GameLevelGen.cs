@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class GameAssetCodes
 {
+    public static char centerLane = '=';
+
     public static char blankRandom = ' ';
 
     public static char blankPath = '-';
@@ -21,16 +23,34 @@ public class GameAssetCodes
     public static char optionalPath = '.';
     public static char optionalWall = 'O';
 
-    //public static char coin = 'c';
-    //public static char enemy = 'e';
-    //public static char treasure = 'T';
+    public static char coin = 'C';
+    public static char treasure = 'T';
+
+    public static char enemy = 'E';
+
+    public static char portal = 'P';
+
+    public static char goldBlock = 'G';
+
     //public static char ladder = 'L';
-    //public static char portal = 'p';
 
 }
 
+public class ItemCodes
+{
+    public static string coin = "coin";
+    public static string treasure = "treasure";
+    public static string goldblock = "goldblock";
+}
 
-// JSON classes
+public class LevelTypes
+{
+    public static string hub = "hub";
+    public static string megadungeon = "megadungeon";
+}
+
+
+// JSON class
 
 public class LevelObject
 {
@@ -57,6 +77,8 @@ public class GameLevelGen : MonoBehaviour
     private Dictionary<string, LevelObject> levelObjectDictionary;
 
     List<Chunk> chunkList;
+
+    public int hubCount = 6;
 
 
     //public string LoadDataFromResources(string path)
@@ -85,6 +107,7 @@ public class GameLevelGen : MonoBehaviour
         //GenerateStartHub();
 
         GenerateLevel("hub-1-0-start", 0, 0);
+        //GenerateLevel("megadungeon-1-0", 0, 0);
 
         //for (int i = 1; i < 25; i++)
         //{
@@ -139,11 +162,14 @@ public class GameLevelGen : MonoBehaviour
     {
         LevelObject levelObject = levelObjectDictionary[code];
 
-        if (levelObject.Type == "hub")
-        {
-            GenerateHub(levelObject, xOffset, yOffset);
-        }
+        //if (levelObject.Type == "hub")
+        //{
+        //    GenerateHub(levelObject, xOffset, yOffset);
+        //}
+
+        GenerateHub(levelObject, xOffset, yOffset);
     }
+
     //public void GenerateHub(LevelObject levelObject)
     //{
     //    GenerateHub(levelObject, 0, 0);
@@ -174,86 +200,223 @@ public class GameLevelGen : MonoBehaviour
 
             foreach (char column in columns)
             {
-                GameObject tile;
+                GameObject permanentTile;
 
-                if (column == GameAssetCodes.blankRandom)
+                GameObject temporaryItem;
+
+                bool isObstacle = true;
+
+                if (column == GameAssetCodes.wall)
                 {
-                    // spawn floor or wall
-                    int chance = Random.Range(1, 10);
-
-                    if (chance < 5)
-                    {
-                        SpawnRandomWall(x,y);
-                    }
-                    else if (chance > 8)
-                    {
-                        SpawnRandomFloor(x,y);
-                    }
-                    else
-                    {
-                        SpawnRandomEntity(x,y);
-                    }
-
+                    permanentTile = SpawnRandomWall(x, y);
                 }
-                else if (column == GameAssetCodes.blankPath)
+                else if (column == GameAssetCodes.blankRandom)
                 {
-                    // spawn floor 
-                    SpawnRandomFloor(x,y);
 
-                }
-                else if (column == GameAssetCodes.wall)
-                {
-                    // spawn wall with 100% chance
-                    SpawnRandomWall(x,y);
-
+                    permanentTile = SpawnWallWithProbability(x, y, 1, 3);
                 }
                 else if (column == GameAssetCodes.optionalPath)
                 {
-                    // spawn floor or wall with 75% chance path
-                    int chance = Random.Range(1, 4);
-
-                    if (chance == 1)
-                    {
-                        SpawnRandomWall(x,y);
-                    }
-                    else
-                    {
-                        SpawnRandomFloor(x,y);
-                    }
-
+                    permanentTile = SpawnWallWithProbability(x, y, 1, 4);
                 }
                 else if (column == GameAssetCodes.optionalWall)
                 {
-                    // spawn floor or wall with 75% chance wall
-                    int chance = Random.Range(1, 4);
+                    permanentTile = SpawnWallWithProbability(x, y, 3, 4);
+                }
+                else
+                {
+                    permanentTile = SpawnEmptyFloor(x, y);
+                    isObstacle = false;
+                }
 
-                    if (chance == 1)
+                if (!isObstacle)
+                {
+                    // if space is free, spawn items
+
+                    if (column == GameAssetCodes.centerLane)
                     {
-                        SpawnRandomFloor(x,y);
+                        temporaryItem = SpawnRandomItemWithProbability(x, y, 1, 4);
+                    }
+                    else if (column == GameAssetCodes.enemy)
+                    {
+                        temporaryItem = SpawnRandomEnemy(x, y);
+                    }
+                    else if (column == GameAssetCodes.spawnPoint)
+                    {
+                        temporaryItem = SpawnSpawnPoint(x, y);
+                    }
+                    else if (column == GameAssetCodes.door)
+                    {
+                        permanentTile = SpawnDoor(x, y);
+                    }
+                    else if (column == GameAssetCodes.portal)
+                    {
+                        permanentTile = SpawnPortal(x, y);
+                    }
+                    else if (column == GameAssetCodes.coin)
+                    {
+                        temporaryItem = SpawnCoin(x, y);
+                    }
+                    else if (column == GameAssetCodes.treasure)
+                    {
+                        temporaryItem = SpawnTreasure(x, y);
+                    }
+                    else if (column == GameAssetCodes.goldBlock)
+                    {
+                        temporaryItem = SpawnGoldBlock(x, y);
                     }
                     else
                     {
-                        SpawnRandomWall(x,y);
+                        temporaryItem = SpawnRandomEntityWithProbability(x, y, 1, 4);
                     }
 
+                    //if (column == GameAssetCodes.centerLane)
+                    //{
+                    //    SpawnRandomItem(x, y, 1, 4);
+                    //}
+                    //else if (column == GameAssetCodes.blankPath
+                    //    || column == GameAssetCodes.optionalPath
+                    //    || column == GameAssetCodes.optionalWall)
+                    //{
+                    //    SpawnRandomItem(x, y, 1, 2);
+                    //}
                 }
-                else if (column == GameAssetCodes.door)
-                {
-                    // spawn floor
-                    SpawnEmptyFloor(x, y);
 
-                    // spawn door on top of floor
-                    SpawnDoor(x,y);
-                }
-                else if (column == GameAssetCodes.spawnPoint)
-                {
-                    // spawn floor
-                    SpawnEmptyFloor(x,y);
 
-                    // spawn player on top of floor
-                    SpawnSpawnPoint(x, y);
 
-                }
+
+
+
+
+
+                //if (column == GameAssetCodes.centerLane)
+                //{
+                //    SpawnEmptyFloor(x, y);
+
+                //}
+                //if (column == GameAssetCodes.blankRandom)
+                //{
+                //    // spawn floor or wall
+                //    int chance = Random.Range(1, 10);
+
+                //    if (chance < 5)
+                //    {
+                //        SpawnRandomWall(x, y);
+                //    }
+                //    else if (chance > 8)
+                //    {
+                //        SpawnRandomFloor(x, y);
+                //    }
+                //    else
+                //    {
+                //        SpawnRandomEntity(x, y);
+                //    }
+
+                //}
+                //else if (column == GameAssetCodes.blankPath)
+                //{
+                //    // spawn floor 
+                //    SpawnRandomFloor(x, y);
+
+                //}
+                //else if (column == GameAssetCodes.wall)
+                //{
+                //    // spawn wall with 100% chance
+                //    SpawnRandomWall(x, y);
+
+                //}
+                //else if (column == GameAssetCodes.optionalPath)
+                //{
+                //    // spawn floor or wall with 75% chance path
+                //    int chance = Random.Range(1, 4);
+
+                //    if (chance == 1)
+                //    {
+                //        SpawnRandomWall(x, y);
+                //    }
+                //    else
+                //    {
+                //        SpawnRandomFloor(x, y);
+                //    }
+
+                //}
+                //else if (column == GameAssetCodes.optionalWall)
+                //{
+                //    // spawn floor or wall with 75% chance wall
+                //    int chance = Random.Range(1, 4);
+
+                //    if (chance == 1)
+                //    {
+                //        SpawnRandomFloor(x, y);
+                //    }
+                //    else
+                //    {
+                //        SpawnRandomWall(x, y);
+                //    }
+
+                //}
+                //else if (column == GameAssetCodes.door)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn door on top of floor
+                //    SpawnDoor(x, y);
+                //}
+                //else if (column == GameAssetCodes.spawnPoint)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn player on top of floor
+                //    SpawnSpawnPoint(x, y);
+
+                //}
+                //else if (column == GameAssetCodes.enemy)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn enemy on top of floor
+                //    SpawnRandomEnemy(x, y);
+
+                //}
+                //else if (column == GameAssetCodes.coin)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn item on top of floor
+                //    SpawnItem(x, y, ItemCodes.coin);
+
+                //}
+                //else if (column == GameAssetCodes.treasure)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn item on top of floor
+                //    SpawnItem(x, y, ItemCodes.treasure);
+
+                //}
+                //else if (column == GameAssetCodes.goldBlock)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn item on top of floor
+                //    SpawnItem(x, y, ItemCodes.goldblock);
+
+                //}
+                //else if (column == GameAssetCodes.portal)
+                //{
+                //    // spawn floor
+                //    SpawnEmptyFloor(x, y);
+
+                //    // spawn portal on top of floor
+                //    SpawnPortal(x, y);
+
+                //}
 
                 x++;
             }
@@ -262,100 +425,253 @@ public class GameLevelGen : MonoBehaviour
         }
     }
 
-    // Spawn floor with small chance of good item
-    private void SpawnRandomFloor(int x, int y)
+    // spawn enemy or item
+    private GameObject SpawnRandomEntityWithProbability(int x, int y, int numerator, int maxRange)
     {
-        int selected = Random.Range(0, assetHolder.floors.Count);
+        int choice = Random.Range(1, maxRange);
 
-        SpawnSelectedFloor(selected, x, y);
-
-        // small chance of spawning item
-        int chance = Random.Range(1, 10);
-
-        if (chance == 1)
+        if (choice <= numerator)
         {
-            //SpawnRandomItem(x, y);
-        }
-
-    }
-
-    // Spawn floor with small chance of good item
-    private void SpawnEmptyFloor(int x, int y)
-    {
-        int selected = Random.Range(0, assetHolder.floors.Count);
-
-        SpawnSelectedFloor(selected, x, y);
-
-        // small chance of spawning item
-        int chance = Random.Range(1, 10);
-
-        if (chance == 1)
-        {
-            //SpawnRandomItem(x, y);
-        }
-
-    }
-
-    private void SpawnSelectedFloor(int selected, int x, int y)
-    {
-        assetHolder.SpawnObject(assetHolder.floors[selected], x, y);
-    }
-
-    private void SpawnRandomWall(int x, int y)
-    {
-        int wallsCount = assetHolder.walls.Count;
-
-        int selected = Random.Range(0, wallsCount);
-
-        assetHolder.SpawnObject(assetHolder.walls[selected], x, y);
-    }
-
-    private void SpawnSpawnPoint(int x, int y)
-    {
-        // TODO: add persistent spawnpoint
-
-        assetHolder.SpawnObject(assetHolder.player, x, y);
-
-    }
-
-    // Spawn entity, either item or enemy
-    private void SpawnRandomEntity(int x, int y)
-    {
-        // TODO: add enemies and items
-
-        // spawn item or enemy with 75% chance enemy
-        int chance = Random.Range(1, 4);
-
-        if (chance == 1)
-        {
-            //SpawnRandomItem(x, y);
+            int entityChoice = Random.Range(1, 2);
+            {
+                if (entityChoice == 1)
+                {
+                    return SpawnRandomEnemy(x,y);
+                }
+                else
+                {
+                    return SpawnRandomItem(x, y);
+                }
+            }
         }
         else
         {
-            //SpawnRandomEnemy(x, y);
+            // spawn nothing
+            return null;
         }
 
-        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
     }
 
-    private void SpawnDoor(int x, int y)
+    private GameObject SpawnRandomItem(int x, int y)
     {
-        assetHolder.SpawnObject(assetHolder.door, x, y);
+        GameObject temp;
+
+        int choice = Random.Range(1, 10);
+
+        if (choice == 1)
+        {
+            temp = SpawnGoldBlock(x, y);
+        }
+        else if (choice < 3)
+        {
+            temp = SpawnTreasure(x, y);
+        }
+        else
+        {
+            temp = SpawnCoin(x, y);
+
+        }
+        return temp;
     }
 
-    private void SpawnRandomEnemy(int x, int y)
+    private GameObject SpawnGoldBlock(int x, int y)
     {
-        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
+        return assetHolder.SpawnObject(assetHolder.goldBlock, x, y);
     }
 
-    // Spawn good item
-    private void SpawnRandomItem(int x, int y)
+    private GameObject SpawnTreasure(int x, int y)
     {
-        // TODO: add enemies and items
-
-        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
-
+        return assetHolder.SpawnObject(assetHolder.treasure, x, y);
     }
+
+    private GameObject SpawnCoin(int x, int y)
+    {
+        return assetHolder.SpawnObject(assetHolder.coin, x, y);
+    }
+
+    private GameObject SpawnPortal(int x, int y)
+    {
+        return assetHolder.SpawnObject(assetHolder.portal, x, y);
+    }
+
+    private GameObject SpawnDoor(int x, int y)
+    {
+        return assetHolder.SpawnObject(assetHolder.door, x, y);
+    }
+
+    private GameObject SpawnSpawnPoint(int x, int y)
+    {
+        return assetHolder.SpawnObject(assetHolder.player, x, y);
+    }
+
+    private GameObject SpawnWallWithProbability(int x, int y, int numerator, int maxRange)
+    {
+        int choice = Random.Range(1, maxRange);
+
+        if (choice <= numerator)
+        {
+            return SpawnRandomWall(x, y);
+        }
+        else
+        {
+            // spawn nothing
+            return null;
+        }
+    }
+
+    private GameObject SpawnRandomItemWithProbability(int x, int y, int numerator, int maxRange)
+    {
+        int choice = Random.Range(1, maxRange);
+
+        if (choice <= numerator)
+        {
+            return SpawnRandomItem(x, y);
+        }
+        else
+        {
+            // spawn nothing
+            return null;
+        }
+    }
+
+    private GameObject SpawnEmptyFloor(int x, int y)
+    {
+        return SpawnRandomFloor(x, y);
+    }
+
+    private GameObject SpawnRandomFloor(int x, int y)
+    {
+        int choice = Random.Range(0, assetHolder.floors.Count - 1);
+
+        return assetHolder.SpawnObject(assetHolder.floors[choice], x, y);
+    }
+
+    private GameObject SpawnRandomEnemy(int x, int y)
+    {
+        int choice = Random.Range(0, assetHolder.enemies.Count - 1);
+
+        return assetHolder.SpawnObject(assetHolder.enemies[choice], x, y);
+    }
+
+    private GameObject SpawnRandomWall(int x, int y)
+    {
+        int choice = Random.Range(0, assetHolder.walls.Count - 1);
+
+        return assetHolder.SpawnObject(assetHolder.walls[choice], x, y);
+    }
+
+    //private void SpawnPortal(int x, int y)
+    //{
+    //    SpawnEmptyFloor(x, y);
+    //    assetHolder.SpawnObject(assetHolder.portal, x, y);
+    //}
+
+    //private void SpawnItem(int x, int y, string itemName)
+    //{
+    //    SpawnEmptyFloor(x, y);
+    //    SpawnRandomItem(x, y);
+    //}
+
+    //// Spawn floor with small chance of good item
+    //private void SpawnRandomFloor(int x, int y)
+    //{
+    //    int selected = Random.Range(0, assetHolder.floors.Count);
+
+    //    SpawnSelectedFloor(selected, x, y);
+
+    //    // small chance of spawning item
+    //    int chance = Random.Range(1, 10);
+
+    //    if (chance == 1)
+    //    {
+    //        SpawnRandomItem(x, y);
+    //    }
+
+    //}
+
+    //// Spawn floor with small chance of good item
+    //private void SpawnEmptyFloor(int x, int y)
+    //{
+    //    int selected = Random.Range(0, assetHolder.floors.Count);
+
+    //    SpawnSelectedFloor(selected, x, y);
+
+    //}
+
+    //private void SpawnSelectedFloor(int selected, int x, int y)
+    //{
+    //    assetHolder.SpawnObject(assetHolder.floors[selected], x, y);
+    //}
+
+    //private void SpawnRandomWall(int x, int y)
+    //{
+    //    int wallsCount = assetHolder.walls.Count;
+
+    //    int selected = Random.Range(0, wallsCount);
+
+    //    assetHolder.SpawnObject(assetHolder.walls[selected], x, y);
+    //}
+
+    //private void SpawnSpawnPoint(int x, int y)
+    //{
+    //    // TODO: add persistent spawnpoint
+
+    //    assetHolder.SpawnObject(assetHolder.player, x, y);
+
+    //}
+
+    //// Spawn entity, either item or enemy
+    //private void SpawnRandomEntity(int x, int y)
+    //{
+    //    // TODO: add enemies and items
+
+    //    // spawn item or enemy with 75% chance enemy
+    //    int chance = Random.Range(1, 4);
+
+    //    if (chance == 1)
+    //    {
+    //        SpawnRandomItem(x, y);
+    //    }
+    //    else
+    //    {
+    //        SpawnRandomEnemy(x, y);
+    //    }
+
+    //    assetHolder.SpawnObject(assetHolder.floors[2], x, y);
+    //}
+
+    //private void SpawnDoor(int x, int y)
+    //{
+    //    assetHolder.SpawnObject(assetHolder.door, x, y);
+    //}
+
+    //private void SpawnRandomEnemy(int x, int y)
+    //{
+    //    assetHolder.SpawnObject(assetHolder.floors[2], x, y);
+    //}
+
+    //// Spawn good item
+    //private void SpawnRandomItem(int x, int y, float v, int v1)
+    //{
+
+    //    // spawn item, better items have lower chance
+
+    //    int chance = Random.Range(1, 10);
+
+    //    if (chance == 1)
+    //    {
+    //        SpawnItem(x, y, ItemCodes.goldblock);
+    //    }
+    //    else if (chance < 3)
+    //    {
+    //        SpawnItem(x, y, ItemCodes.treasure);
+    //    }
+    //    else
+    //    {
+    //        SpawnItem(x, y, ItemCodes.coin);
+    //    }
+
+    //}
 
     public void DebugPrintLevelData()
     {
