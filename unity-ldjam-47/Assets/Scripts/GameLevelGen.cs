@@ -109,14 +109,14 @@ public class GameLevelGen : MonoBehaviour
         GenerateLevel("hub-1-0-start", 0, 0);
         //GenerateLevel("megadungeon-1-0", 0, 0);
 
-        for (int i = 1; i < 25; i++)
-        {
-            GenerateLevel("hub-1-2", 7 * i, 0);
-        }
-        for (int i = 1; i < 25; i++)
-        {
-            GenerateLevel("hub-1-2", -7 * i, 0);
-        }
+        //for (int i = 1; i < 25; i++)
+        //{
+        //    GenerateLevel("hub-1-2", 7 * i, 0);
+        //}
+        //for (int i = 1; i < 25; i++)
+        //{
+        //    GenerateLevel("hub-1-2", -7 * i, 0);
+        //}
 
         // after generation complete, rotate level transform
 
@@ -212,7 +212,6 @@ public class GameLevelGen : MonoBehaviour
                 }
                 else if (column == GameAssetCodes.blankRandom)
                 {
-
                     permanentTile = SpawnWallWithProbability(x, y, 1, 3);
                 }
                 else if (column == GameAssetCodes.optionalPath)
@@ -267,7 +266,7 @@ public class GameLevelGen : MonoBehaviour
                     }
                     else
                     {
-                        temporaryItem = SpawnRandomEntityWithProbability(x, y, 1, 4);
+                        temporaryItem = SpawnRandomEntityWithProbability(x, y, 1, 5);
                     }
                 }
 
@@ -285,7 +284,7 @@ public class GameLevelGen : MonoBehaviour
 
         if (choice <= numerator)
         {
-            int entityChoice = Random.Range(1, 2);
+            int entityChoice = Random.Range(1, 3);
             {
                 if (entityChoice == 1)
                 {
@@ -368,7 +367,7 @@ public class GameLevelGen : MonoBehaviour
         else
         {
             // spawn nothing
-            return null;
+            return SpawnEmptyFloor(x, y);
         }
     }
 
