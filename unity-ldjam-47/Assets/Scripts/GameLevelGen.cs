@@ -45,8 +45,9 @@ public class GameLevelGen : MonoBehaviour
 {
     public const string PATH_LEVELS = "levels/";
 
+    public AssetHolder assetHolder;
 
-    Dictionary<string, LevelObject> levelObjectDictionary;
+    private Dictionary<string, LevelObject> levelObjectDictionary;
 
 
     //public string LoadDataFromResources(string path)
@@ -66,6 +67,7 @@ public class GameLevelGen : MonoBehaviour
 
     private void Awake()
     {
+
         UpdateLevelData();
 
         DebugPrintLevelData();
@@ -105,9 +107,9 @@ public class GameLevelGen : MonoBehaviour
 
     public void GenerateLevel(string code)
     {
-        LevelObject levelObject = levelObjectDictionary["code"];
+        LevelObject levelObject = levelObjectDictionary[code];
 
-        if (levelObject.Code == "hub")
+        if (levelObject.Type == "hub")
         {
             GenerateHub(levelObject);
         }
@@ -120,6 +122,7 @@ public class GameLevelGen : MonoBehaviour
 
     private void ParseLevelData(List<string> data)
     {
+        Debug.Log("started parsing level data");
 
         int x = 0;
         int y = data.Count;
@@ -145,18 +148,18 @@ public class GameLevelGen : MonoBehaviour
                     }
                     else if (chance > 8)
                     {
-                        SpawnRandomEntity(x,y);
+                        SpawnRandomFloor(x,y);
                     }
                     else
                     {
-                        SpawnRandomEnemy(x,y);
+                        SpawnRandomEntity(x,y);
                     }
 
                 }
                 else if (column == GameAssetCodes.blankPath)
                 {
                     // spawn floor 
-                    SpawnRandomEnemy(x,y);
+                    SpawnRandomFloor(x,y);
 
                 }
                 else if (column == GameAssetCodes.wall)
@@ -176,7 +179,7 @@ public class GameLevelGen : MonoBehaviour
                     }
                     else
                     {
-                        SpawnRandomEnemy(x,y);
+                        SpawnRandomFloor(x,y);
                     }
 
                 }
@@ -187,7 +190,7 @@ public class GameLevelGen : MonoBehaviour
 
                     if (chance == 1)
                     {
-                        SpawnRandomEnemy(x,y);
+                        SpawnRandomFloor(x,y);
                     }
                     else
                     {
@@ -202,7 +205,7 @@ public class GameLevelGen : MonoBehaviour
                 else if (column == GameAssetCodes.spawnPoint)
                 {
                     // spawn floor
-                    SpawnRandomEnemy(x,y);
+                    SpawnRandomFloor(x,y);
 
                     // spawn player on top of floor
                     SpawnSpawnPoint(x, y);
@@ -216,12 +219,48 @@ public class GameLevelGen : MonoBehaviour
         }
     }
 
-    private void SpawnSpawnPoint(int x, int y)
+    // Spawn floor with small chance of good item
+    private void SpawnRandomFloor(int x, int y)
     {
-        throw new NotImplementedException();
+        int selected = Random.Range(0, assetHolder.floors.Count);
+
+        SpawnSelectedFloor(selected, x, y);
+
+        // small chance of spawning item
+        int chance = Random.Range(1, 10);
+
+        if (chance == 1)
+        {
+            //SpawnRandomItem(x, y);
+        }
+
     }
 
-    // Spawn enemy or item
+    private void SpawnSelectedFloor(int selected, int x, int y)
+    {
+        assetHolder.SpawnObject(assetHolder.floors[selected], x, y);
+    }
+
+    private void SpawnRandomWall(int x, int y)
+    {
+        int wallsCount = assetHolder.walls.Count;
+
+        int test = 5;
+
+        int selected = Random.Range(0, wallsCount);
+
+        assetHolder.SpawnObject(assetHolder.walls[selected], x, y);
+    }
+
+    private void SpawnSpawnPoint(int x, int y)
+    {
+        // TODO: add persistent spawnpoint
+
+        assetHolder.SpawnObject(assetHolder.player, x, y);
+
+    }
+
+    // Spawn entity, either item or enemy
     private void SpawnRandomEntity(int x, int y)
     {
         // TODO: add enemies and items
@@ -238,18 +277,17 @@ public class GameLevelGen : MonoBehaviour
             //SpawnRandomEnemy(x, y);
         }
 
-        SpawnRandomEntity(x,y);
+        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
     }
 
     private void SpawnDoor(int x, int y)
     {
-        throw new NotImplementedException();
+        assetHolder.SpawnObject(assetHolder.door, x, y);
     }
 
-    // Spawn floor with small chance of good item
     private void SpawnRandomEnemy(int x, int y)
     {
-        throw new NotImplementedException();
+        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
     }
 
     // Spawn good item
@@ -257,12 +295,8 @@ public class GameLevelGen : MonoBehaviour
     {
         // TODO: add enemies and items
 
+        assetHolder.SpawnObject(assetHolder.floors[2], x, y);
 
-    }
-
-    private void SpawnRandomWall(int x, int y)
-    {
-        throw new NotImplementedException();
     }
 
     public void DebugPrintLevelData()
@@ -294,163 +328,4 @@ public class GameLevelGen : MonoBehaviour
             Debug.Log(stringBuilder.ToString());
         }
     }
-
-
-
-
-    //public string LoadDataFromResources(string path)
-    //	{
-
-    //		string dataValue = "";
-
-    //		TextAsset textData = Resources.Load<TextAsset>(path);
-    //		if (textData != null)
-    //		{
-    //			dataValue = textData.text;
-    //		}
-
-    //		return dataValue;
-    //	}
-
-    //	public void LoadLevel(string levelCode)
-    //	{
-    //		UpdateAssetLayout(levelCode);
-    //		RenderLevel();
-    //	}
-
-
-    //  public void LoadLevel(string levelCode)
-    //	{
-    //		UpdateAssetLayout(levelCode);
-    //		RenderLevel();
-    //	}
-
-    //	public void UpdateAssetLayout(string levelCode)
-    //	{
-
-    //		// Creates the assetLayout grid to later be rendered
-
-    //		tileMapData = new List<List<GameAssetTile>>();
-
-    //		List<string> levelData = GetLevelData(levelCode);
-
-    //		int x = 0;
-    //		int y = levelData.Count;
-
-    //		gridHeight = levelData.Count;
-
-    //		foreach (string row in levelData)
-    //		{
-
-    //			List<string> arrCol = row.ToStringArray();
-
-    //			List<GameAssetTile> listRow = new List<GameAssetTile>();
-
-    //			gridWidth = arrCol.Count;
-
-    //			x = 0;
-
-    //			foreach (string col in arrCol)
-    //			{
-
-    //				GameAssetTile tile = new GameAssetTile();
-
-    //				// laod asset and render at x/y
-
-    //				string val = col;
-    //				string name = GameAssetKeys.none;
-
-    //				int nodeX = (int)x;
-    //				int nodeY = (levelData.Count) - ((int)y);
-
-    //				string colVal = col;
-
-    //				if (colVal == GameAssetCodes.none)
-    //				{
-    //					// Fill random blocks here at random for pathfinding	
-    //					int randomItem = UnityEngine.Random.Range(1, 10);
-    //					if (randomItem >= 3 && randomItem < 5)
-    //					{
-    //						colVal = GameAssetCodes.block;
-    //					}
-    //				}
-
-    //				if (colVal == GameAssetCodes.block)
-    //				{
-    //					name = GameAssetKeys.block;
-    //					nodes.Add(new Point(nodeX, nodeY));
-    //				}
-    //				else if (colVal == GameAssetCodes.none)
-    //				{
-    //					name = GameAssetKeys.none;
-    //				}
-    //				else if (colVal == GameAssetCodes.blank)
-    //				{
-    //					name = GameAssetKeys.blank;
-    //				}
-    //				else if (colVal == GameAssetCodes.coin)
-    //				{
-    //					name = GameAssetKeys.coin;
-    //				}
-    //				else if (colVal == GameAssetCodes.exit)
-    //				{
-    //					name = GameAssetKeys.exit;
-    //				}
-    //				else if (colVal == GameAssetCodes.player)
-    //				{
-    //					name = GameAssetKeys.player;
-    //				}
-    //				else if (colVal == GameAssetCodes.enemyeye)
-    //				{
-    //					name = GameAssetKeys.enemyeye;
-    //				}
-    //				else if (colVal == GameAssetCodes.enemyskull)
-    //				{
-    //					name = GameAssetKeys.enemyskull;
-    //				}
-
-    //				tile.pos.x = (x - ((gridWidth) / 2));
-    //				tile.pos.y = (y - ((gridHeight) / 2));
-    //				tile.val = val;
-    //				tile.name = name;
-
-    //				listRow.Add(tile);
-
-    //				x++;
-
-    //			}
-
-    //			tileMapData.Add(listRow);
-
-    //			y--;
-    //		}
-    //	}
-
-
-    //	public string GetRandomBackgroundTile()
-    //	{
-    //		// randomize tile backers
-
-    //		string tileName = "";
-
-    //		int randomTile = UnityEngine.Random.Range(1, 3);
-
-    //		if (randomTile == 1)
-    //		{
-    //			tileName = GameAssetKeys.tiled;
-    //		}
-    //		else if (randomTile == 2)
-    //		{
-    //			tileName = GameAssetKeys.tilebroken;
-    //		}
-    //		else if (randomTile == 3)
-    //		{
-    //			tileName = GameAssetKeys.tileruined;
-    //		}
-    //		else
-    //		{
-    //			tileName = GameAssetKeys.tiled;
-    //		}
-    //		return tileName;
-    //	}
 }
