@@ -24,7 +24,17 @@ public class AssetHolder : MonoBehaviour
 
     public void SpawnObject(GameObject go, int x, int y)
     {
+        SpawnObject(go, levelsTransform, x, y);
+    }
+
+    public void SpawnObject(GameObject go, Transform levelsTransform, int x, int y)
+    {
         Vector3 pos = new Vector3(x, y);
         Instantiate(go, pos, Quaternion.identity, levelsTransform);
+    }
+
+    public void RotateLevel()
+    {
+        levelsTransform.parent.Rotate(90, 0, 0);
     }
 }

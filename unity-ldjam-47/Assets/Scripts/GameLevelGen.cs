@@ -72,7 +72,20 @@ public class GameLevelGen : MonoBehaviour
 
         DebugPrintLevelData();
 
-        GenerateLevel("hub-1-0-start");
+        GenerateLevel("hub-1-0-start", 0, 0);
+
+        for (int i = 1; i < 25; i++)
+        {
+            GenerateLevel("hub-1-2", 7 * i, 0);
+        }
+        for (int i = 1; i < 25; i++)
+        {
+            GenerateLevel("hub-1-2", -7 * i, 0);
+        }
+
+        // after generation complete, rotate level transform
+
+        assetHolder.RotateLevel();
     }
 
     public void UpdateLevelData()
@@ -105,33 +118,47 @@ public class GameLevelGen : MonoBehaviour
         return jsonLevelDictionary;
     }
 
-    public void GenerateLevel(string code)
+    //public void GenerateLevel(string code)
+    //{
+    //    GenerateLevel(code, 0, 0);
+    //}
+
+    public void GenerateLevel(string code, int xOffset, int yOffset)
     {
         LevelObject levelObject = levelObjectDictionary[code];
 
         if (levelObject.Type == "hub")
         {
-            GenerateHub(levelObject);
+            GenerateHub(levelObject, xOffset, yOffset);
         }
     }
+    //public void GenerateHub(LevelObject levelObject)
+    //{
+    //    GenerateHub(levelObject, 0, 0);
+    //}
 
-    public void GenerateHub(LevelObject levelObject)
+    public void GenerateHub(LevelObject levelObject, int xOffset, int yOffset)
     {
-        ParseLevelData(levelObject.Data);
+        ParseLevelData(levelObject.Data, xOffset, yOffset);
     }
 
-    private void ParseLevelData(List<string> data)
+    //private void ParseLevelData(List<string> data)
+    //{
+    //    ParseLevelData(data, 0, 0);
+    //}
+
+    private void ParseLevelData(List<string> data, int xOffset, int yOffset)
     {
         Debug.Log("started parsing level data");
 
-        int x = 0;
-        int y = data.Count;
+        int x = xOffset;
+        int y = data.Count + yOffset;
 
         foreach (string row in data)
         {
             char[] columns = row.ToCharArray();
 
-            x = 0;
+            x = xOffset;
 
             foreach (char column in columns)
             {
