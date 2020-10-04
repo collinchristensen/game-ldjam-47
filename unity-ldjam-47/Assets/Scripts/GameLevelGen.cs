@@ -4,25 +4,28 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.VFX;
+using Random = UnityEngine.Random;
 
 public class GameAssetCodes
 {
-    public static string blankRandom = " ";
+    public static char blankRandom = ' ';
 
-    public static string blankPath = "-";
-    public static string wall = "W";
-    public static string door = "D";
+    public static char blankPath = '-';
+    public static char wall = 'W';
+    public static char door = 'D';
 
-    public static string spawnPoint = "S";
+    public static char spawnPoint = 'S';
 
-    public static string optionalPath = ".";
-    public static string optionalWall = "O";
+    public static char optionalPath = '.';
+    public static char optionalWall = 'O';
 
-    //public static string coin = "c";
-    //public static string enemy = "e";
-    //public static string treasure = "T";
-    //public static string ladder = "L";
-    //public static string portal = "p";
+    //public static char coin = 'c';
+    //public static char enemy = 'e';
+    //public static char treasure = 'T';
+    //public static char ladder = 'L';
+    //public static char portal = 'p';
 
 }
 
@@ -102,7 +105,164 @@ public class GameLevelGen : MonoBehaviour
 
     public void GenerateLevel(string code)
     {
+        LevelObject levelObject = levelObjectDictionary["code"];
 
+        if (levelObject.Code == "hub")
+        {
+            GenerateHub(levelObject);
+        }
+    }
+
+    public void GenerateHub(LevelObject levelObject)
+    {
+        ParseLevelData(levelObject.Data);
+    }
+
+    private void ParseLevelData(List<string> data)
+    {
+
+        int x = 0;
+        int y = data.Count;
+
+        foreach (string row in data)
+        {
+            char[] columns = row.ToCharArray();
+
+            x = 0;
+
+            foreach (char column in columns)
+            {
+                GameObject tile;
+
+                if (column == GameAssetCodes.blankRandom)
+                {
+                    // spawn floor or wall
+                    int chance = Random.Range(1, 10);
+
+                    if (chance < 5)
+                    {
+                        SpawnRandomWall(x,y);
+                    }
+                    else if (chance > 8)
+                    {
+                        SpawnRandomEntity(x,y);
+                    }
+                    else
+                    {
+                        SpawnRandomEnemy(x,y);
+                    }
+
+                }
+                else if (column == GameAssetCodes.blankPath)
+                {
+                    // spawn floor 
+                    SpawnRandomEnemy(x,y);
+
+                }
+                else if (column == GameAssetCodes.wall)
+                {
+                    // spawn wall with 100% chance
+                    SpawnRandomWall(x,y);
+
+                }
+                else if (column == GameAssetCodes.optionalPath)
+                {
+                    // spawn floor or wall with 75% chance path
+                    int chance = Random.Range(1, 4);
+
+                    if (chance == 1)
+                    {
+                        SpawnRandomWall(x,y);
+                    }
+                    else
+                    {
+                        SpawnRandomEnemy(x,y);
+                    }
+
+                }
+                else if (column == GameAssetCodes.optionalWall)
+                {
+                    // spawn floor or wall with 75% chance wall
+                    int chance = Random.Range(1, 4);
+
+                    if (chance == 1)
+                    {
+                        SpawnRandomEnemy(x,y);
+                    }
+                    else
+                    {
+                        SpawnRandomWall(x,y);
+                    }
+
+                }
+                else if (column == GameAssetCodes.door)
+                {
+                    SpawnDoor(x,y);
+                }
+                else if (column == GameAssetCodes.spawnPoint)
+                {
+                    // spawn floor
+                    SpawnRandomEnemy(x,y);
+
+                    // spawn player on top of floor
+                    SpawnSpawnPoint(x, y);
+
+                }
+
+                x++;
+            }
+
+            y--;
+        }
+    }
+
+    private void SpawnSpawnPoint(int x, int y)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Spawn enemy or item
+    private void SpawnRandomEntity(int x, int y)
+    {
+        // TODO: add enemies and items
+
+        // spawn item or enemy with 75% chance enemy
+        int chance = Random.Range(1, 4);
+
+        if (chance == 1)
+        {
+            //SpawnRandomItem(x, y);
+        }
+        else
+        {
+            //SpawnRandomEnemy(x, y);
+        }
+
+        SpawnRandomEntity(x,y);
+    }
+
+    private void SpawnDoor(int x, int y)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Spawn floor with small chance of good item
+    private void SpawnRandomEnemy(int x, int y)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Spawn good item
+    private void SpawnRandomItem(int x, int y)
+    {
+        // TODO: add enemies and items
+
+
+    }
+
+    private void SpawnRandomWall(int x, int y)
+    {
+        throw new NotImplementedException();
     }
 
     public void DebugPrintLevelData()
