@@ -41,6 +41,13 @@ public class LevelObject
     public List<string> Data { get; set; }
 }
 
+public class Chunk
+{
+    public string Type { get; set; }
+
+    public List<GameObject> Tiles { get; set; }
+}
+
 public class GameLevelGen : MonoBehaviour
 {
     public const string PATH_LEVELS = "levels/";
@@ -48,6 +55,8 @@ public class GameLevelGen : MonoBehaviour
     public AssetHolder assetHolder;
 
     private Dictionary<string, LevelObject> levelObjectDictionary;
+
+    List<Chunk> chunkList;
 
 
     //public string LoadDataFromResources(string path)
@@ -67,21 +76,24 @@ public class GameLevelGen : MonoBehaviour
 
     private void Awake()
     {
+        chunkList = new List<Chunk>();
 
         UpdateLevelData();
 
         DebugPrintLevelData();
 
+        //GenerateStartHub();
+
         GenerateLevel("hub-1-0-start", 0, 0);
 
-        for (int i = 1; i < 25; i++)
-        {
-            GenerateLevel("hub-1-2", 7 * i, 0);
-        }
-        for (int i = 1; i < 25; i++)
-        {
-            GenerateLevel("hub-1-2", -7 * i, 0);
-        }
+        //for (int i = 1; i < 25; i++)
+        //{
+        //    GenerateLevel("hub-1-2", 7 * i, 0);
+        //}
+        //for (int i = 1; i < 25; i++)
+        //{
+        //    GenerateLevel("hub-1-2", -7 * i, 0);
+        //}
 
         // after generation complete, rotate level transform
 
@@ -227,12 +239,16 @@ public class GameLevelGen : MonoBehaviour
                 }
                 else if (column == GameAssetCodes.door)
                 {
+                    // spawn floor
+                    SpawnEmptyFloor(x, y);
+
+                    // spawn door on top of floor
                     SpawnDoor(x,y);
                 }
                 else if (column == GameAssetCodes.spawnPoint)
                 {
                     // spawn floor
-                    SpawnRandomFloor(x,y);
+                    SpawnEmptyFloor(x,y);
 
                     // spawn player on top of floor
                     SpawnSpawnPoint(x, y);
@@ -248,6 +264,23 @@ public class GameLevelGen : MonoBehaviour
 
     // Spawn floor with small chance of good item
     private void SpawnRandomFloor(int x, int y)
+    {
+        int selected = Random.Range(0, assetHolder.floors.Count);
+
+        SpawnSelectedFloor(selected, x, y);
+
+        // small chance of spawning item
+        int chance = Random.Range(1, 10);
+
+        if (chance == 1)
+        {
+            //SpawnRandomItem(x, y);
+        }
+
+    }
+
+    // Spawn floor with small chance of good item
+    private void SpawnEmptyFloor(int x, int y)
     {
         int selected = Random.Range(0, assetHolder.floors.Count);
 
