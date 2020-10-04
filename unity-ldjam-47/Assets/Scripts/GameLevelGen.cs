@@ -109,14 +109,14 @@ public class GameLevelGen : MonoBehaviour
         GenerateLevel("hub-1-0-start", 0, 0);
         //GenerateLevel("megadungeon-1-0", 0, 0);
 
-        //for (int i = 1; i < 25; i++)
-        //{
-        //    GenerateLevel("hub-1-2", 7 * i, 0);
-        //}
-        //for (int i = 1; i < 25; i++)
-        //{
-        //    GenerateLevel("hub-1-2", -7 * i, 0);
-        //}
+        for (int i = 1; i < 25; i++)
+        {
+            GenerateLevel("hub-1-2", 7 * i, 0);
+        }
+        for (int i = 1; i < 25; i++)
+        {
+            GenerateLevel("hub-1-2", -7 * i, 0);
+        }
 
         // after generation complete, rotate level transform
 
@@ -269,154 +269,7 @@ public class GameLevelGen : MonoBehaviour
                     {
                         temporaryItem = SpawnRandomEntityWithProbability(x, y, 1, 4);
                     }
-
-                    //if (column == GameAssetCodes.centerLane)
-                    //{
-                    //    SpawnRandomItem(x, y, 1, 4);
-                    //}
-                    //else if (column == GameAssetCodes.blankPath
-                    //    || column == GameAssetCodes.optionalPath
-                    //    || column == GameAssetCodes.optionalWall)
-                    //{
-                    //    SpawnRandomItem(x, y, 1, 2);
-                    //}
                 }
-
-
-
-
-
-
-
-
-                //if (column == GameAssetCodes.centerLane)
-                //{
-                //    SpawnEmptyFloor(x, y);
-
-                //}
-                //if (column == GameAssetCodes.blankRandom)
-                //{
-                //    // spawn floor or wall
-                //    int chance = Random.Range(1, 10);
-
-                //    if (chance < 5)
-                //    {
-                //        SpawnRandomWall(x, y);
-                //    }
-                //    else if (chance > 8)
-                //    {
-                //        SpawnRandomFloor(x, y);
-                //    }
-                //    else
-                //    {
-                //        SpawnRandomEntity(x, y);
-                //    }
-
-                //}
-                //else if (column == GameAssetCodes.blankPath)
-                //{
-                //    // spawn floor 
-                //    SpawnRandomFloor(x, y);
-
-                //}
-                //else if (column == GameAssetCodes.wall)
-                //{
-                //    // spawn wall with 100% chance
-                //    SpawnRandomWall(x, y);
-
-                //}
-                //else if (column == GameAssetCodes.optionalPath)
-                //{
-                //    // spawn floor or wall with 75% chance path
-                //    int chance = Random.Range(1, 4);
-
-                //    if (chance == 1)
-                //    {
-                //        SpawnRandomWall(x, y);
-                //    }
-                //    else
-                //    {
-                //        SpawnRandomFloor(x, y);
-                //    }
-
-                //}
-                //else if (column == GameAssetCodes.optionalWall)
-                //{
-                //    // spawn floor or wall with 75% chance wall
-                //    int chance = Random.Range(1, 4);
-
-                //    if (chance == 1)
-                //    {
-                //        SpawnRandomFloor(x, y);
-                //    }
-                //    else
-                //    {
-                //        SpawnRandomWall(x, y);
-                //    }
-
-                //}
-                //else if (column == GameAssetCodes.door)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn door on top of floor
-                //    SpawnDoor(x, y);
-                //}
-                //else if (column == GameAssetCodes.spawnPoint)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn player on top of floor
-                //    SpawnSpawnPoint(x, y);
-
-                //}
-                //else if (column == GameAssetCodes.enemy)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn enemy on top of floor
-                //    SpawnRandomEnemy(x, y);
-
-                //}
-                //else if (column == GameAssetCodes.coin)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn item on top of floor
-                //    SpawnItem(x, y, ItemCodes.coin);
-
-                //}
-                //else if (column == GameAssetCodes.treasure)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn item on top of floor
-                //    SpawnItem(x, y, ItemCodes.treasure);
-
-                //}
-                //else if (column == GameAssetCodes.goldBlock)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn item on top of floor
-                //    SpawnItem(x, y, ItemCodes.goldblock);
-
-                //}
-                //else if (column == GameAssetCodes.portal)
-                //{
-                //    // spawn floor
-                //    SpawnEmptyFloor(x, y);
-
-                //    // spawn portal on top of floor
-                //    SpawnPortal(x, y);
-
-                //}
 
                 x++;
             }
