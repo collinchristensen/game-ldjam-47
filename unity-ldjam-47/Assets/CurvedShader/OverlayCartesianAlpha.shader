@@ -11,6 +11,8 @@ Shader "Custom/OverlayCartesianAlpha"
 	//	_ZCurvature ("Z curvature", Range (-1, 1)) = 0
 		_Color ("Main Color", Color) = (1,1,1,1)
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_GammaMod ("Gamma Mod", Float) = 1
+		_ContrastMod ("Contrast Mod", Float) = 1
 	}
 
 	SubShader 
@@ -30,6 +32,8 @@ Shader "Custom/OverlayCartesianAlpha"
 
 		sampler2D _MainTex;
 		fixed4 _Color;
+		float _GammaMod;
+		float _ContrastMod;
 
 		struct Input 
 		{
@@ -76,10 +80,10 @@ Shader "Custom/OverlayCartesianAlpha"
 			//o.Albedo = c.rgb;
 
 			// contrast
-			c.rgb = ((c.rgb - 0.5f) * max(5, 0)) + 0.5f;
+			c.rgb = ((c.rgb - 0.5f) * max(5 * _ContrastMod, 0)) + 0.5f;
 
 			// brightness
-			c.rgb += 1;
+			c.rgb += 1 * _GammaMod;
 
 			o.Albedo = c.rgb;
 
