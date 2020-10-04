@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 816177761546833286}
   - component: {fileID: 816177761546833281}
   m_Layer: 0
-  m_Name: tile-wall
+  m_Name: tile-wall4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e812074f6f9eb204395bd1871feed559, type: 2}
+  - {fileID: 2100000, guid: 7a9b49153f0145d4097258bc9b65eb3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

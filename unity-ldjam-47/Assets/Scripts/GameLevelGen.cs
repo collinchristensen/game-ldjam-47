@@ -245,8 +245,6 @@ public class GameLevelGen : MonoBehaviour
     {
         int wallsCount = assetHolder.walls.Count;
 
-        int test = 5;
-
         int selected = Random.Range(0, wallsCount);
 
         assetHolder.SpawnObject(assetHolder.walls[selected], x, y);

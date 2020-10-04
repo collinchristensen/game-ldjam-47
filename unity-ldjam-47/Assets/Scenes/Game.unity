@@ -1332,8 +1332,10 @@ MonoBehaviour:
   - {fileID: 124490868619497854, guid: 25a9282e7ed9ac34f8d191c8318f1c13, type: 3}
   - {fileID: 9043623802527131147, guid: 2e289b3b713f87446b189e9f850f2f5b, type: 3}
   walls:
-  - {fileID: 816177761546833283, guid: 33ebb87c6b80e3a4db6d7894a3201546, type: 3}
-  - {fileID: 816177761546833283, guid: 33ebb87c6b80e3a4db6d7894a3201546, type: 3}
+  - {fileID: 816177761546833283, guid: 4ea5b45f38261c44997c49b37c3967e1, type: 3}
+  - {fileID: 816177761546833283, guid: 9aa582b590ec7e643a3922422e3076ef, type: 3}
+  - {fileID: 816177761546833283, guid: 5bc3c93c9047b784083bfe038daaa8a6, type: 3}
+  - {fileID: 816177761546833283, guid: fff29c6fdc434f040835925db89f763f, type: 3}
   door: {fileID: 5725067404888621418, guid: a48bd37803fa5514a8b9af071b9a7f11, type: 3}
   enemies: []
   portal: {fileID: 0}
@@ -2644,13 +2646,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787492342}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.19257466, y: -0.25362316, z: -0.051600218, w: 0.9465346}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: -23, y: -30, z: 0}
 --- !u!1 &1907001843
 GameObject:
   m_ObjectHideFlags: 0
