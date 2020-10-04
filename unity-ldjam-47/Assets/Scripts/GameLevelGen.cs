@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class GameAssetCodes
@@ -41,7 +43,8 @@ public class GameLevelGen : MonoBehaviour
     public const string PATH_LEVELS = "levels/";
 
 
-    List<LevelObject> levelsList;
+    Dictionary<string, LevelObject> levelObjectDictionary;
+
 
     //public string LoadDataFromResources(string path)
     //{
@@ -61,49 +64,73 @@ public class GameLevelGen : MonoBehaviour
     private void Awake()
     {
         UpdateLevelData();
+
         DebugPrintLevelData();
+
+        GenerateLevel("hub-1-0-start");
     }
 
     public void UpdateLevelData()
     {
-        levelsList = LoadLevelData(PATH_LEVELS);
+        levelObjectDictionary = LoadLevelData(PATH_LEVELS);
     }
 
-    public List<LevelObject> LoadLevelData(string path)
+    public Dictionary<string, LevelObject> LoadLevelData(string path)
     {
         // load text assets as object array and cast to text asset array
 
         TextAsset[] jsonTextAssets = Resources.LoadAll<TextAsset>(path);
 
-        List<LevelObject> jsonObjectList = new List<LevelObject>();
+        Dictionary<string, LevelObject> jsonLevelDictionary = new Dictionary<string, LevelObject>();
 
         string levelJson = "";
         foreach (TextAsset jsonTextAsset in jsonTextAssets)
         {
             if (jsonTextAsset != null)
             {
-                Debug.Log(typeof(LevelObject) + jsonTextAsset.text);
+                //Debug.Log(typeof(LevelObject) + jsonTextAsset.text);
                 levelJson = jsonTextAsset.text;
             }
 
-            jsonObjectList.Add(levelJson.FromJSON<LevelObject>());
+            LevelObject tempLevel = levelJson.FromJSON<LevelObject>();
+
+            jsonLevelDictionary.Add(tempLevel.Code, tempLevel);
         }
 
-        return jsonObjectList;
+        return jsonLevelDictionary;
+    }
+
+    public void GenerateLevel(string code)
+    {
+
     }
 
     public void DebugPrintLevelData()
     {
-        foreach (LevelObject level in levelsList)
+        foreach (KeyValuePair<string, LevelObject> kvp in levelObjectDictionary)
         {
+            LevelObject level = kvp.Value;
+
             StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("Key: ");
+            stringBuilder.Append(kvp.Key);
+
+            stringBuilder.Append("\nCode: ");
             stringBuilder.Append(level.Code);
+
+            stringBuilder.Append("\nType: ");
             stringBuilder.Append(level.Type);
+
+            stringBuilder.Append("\nSize: ");
             stringBuilder.Append(level.Size);
+
             foreach (string dataRow in level.Data)
             {
+                stringBuilder.Append("\n");
                 stringBuilder.Append(dataRow);
             }
+
             Debug.Log(stringBuilder.ToString());
         }
     }
