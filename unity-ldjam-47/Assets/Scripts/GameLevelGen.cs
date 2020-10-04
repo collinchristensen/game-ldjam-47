@@ -76,10 +76,17 @@ public class GameLevelGen : MonoBehaviour
 
     private Dictionary<string, LevelObject> levelObjectDictionary;
 
-    List<Chunk> chunkList;
+    List<Chunk> chunksLeft;
+    List<Chunk> chunksRight;
 
-    public int hubCount = 6;
+    // number of chunks generated on either side of the current chunk
+    public int chunkBuffer = 3;
 
+
+    private int hubWidth = 7;
+    private int hubHeight = 7;
+
+    private int dungeonWidth = 21;
 
     //public string LoadDataFromResources(string path)
     //{
@@ -98,16 +105,21 @@ public class GameLevelGen : MonoBehaviour
 
     private void Awake()
     {
-        chunkList = new List<Chunk>();
+        chunksLeft = new List<Chunk>();
+        chunksRight = new List<Chunk>();
 
         UpdateLevelData();
 
         DebugPrintLevelData();
 
         //GenerateStartHub();
+        //GenerateRandomHub();
 
         Chunk spawnPointHub;
         spawnPointHub = GenerateLevel("hub-1-0-start", 0, 0);
+
+
+
         //GenerateLevel("megadungeon-1-0", 0, 0);
 
         //for (int i = 1; i < 25; i++)
@@ -119,9 +131,20 @@ public class GameLevelGen : MonoBehaviour
         //    GenerateLevel("hub-1-2", -7 * i, 0);
         //}
 
-        // after generation complete, rotate level transform
+        for (int i = 1; i < chunkBuffer -1; i++)
+        {
+            Chunk temp = GenerateLevel("hub-1-2", hubWidth * i, 0);
+            chunksRight.Add(temp);
+        }
+        for (int i = 1; i < chunkBuffer - 1; i++)
+        {
+            Chunk temp = GenerateLevel("hub-1-3", -hubWidth * i, 0);
+            chunksLeft.Add(temp);
+        }
 
-        CopyLevel(spawnPointHub, 10,10);
+        CopyLevel(spawnPointHub, 10, 10);
+
+        // after generation complete, rotate level transform
 
         assetHolder.RotateLevel();
     }
@@ -182,6 +205,8 @@ public class GameLevelGen : MonoBehaviour
 
         int x = xOffset;
         int y = chunkTiles.Count + yOffset;
+
+        // TODO: Spawn new temp items like enemies and coins
 
         foreach (List<GameObject> chunkRows in chunkTiles)
         {

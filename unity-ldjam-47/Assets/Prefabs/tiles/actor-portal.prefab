@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5725067403946968694}
   - component: {fileID: 5725067403946968689}
   - component: {fileID: 5725067403946968688}
-  - component: {fileID: 5725067403946968695}
   m_Layer: 0
   m_Name: visual
   m_TagString: Untagged
@@ -48,7 +47,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5725067403946968693}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -82,20 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5725067403946968695
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5725067403946968693}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5725067404888621418
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +92,7 @@ GameObject:
   - component: {fileID: 5725067404888621417}
   - component: {fileID: 881789662}
   m_Layer: 0
-  m_Name: actor-door
+  m_Name: actor-portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
