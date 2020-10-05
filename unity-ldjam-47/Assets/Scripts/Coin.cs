@@ -6,6 +6,8 @@ public class Coin : MonoBehaviour
 {
     public int scoreAmount;
 
+    public int healthAmount = 1;
+
     void OnTriggerEnter(Collider other)
     {
 
@@ -15,6 +17,8 @@ public class Coin : MonoBehaviour
 
             // add score
             Messenger.Broadcast<int>(GameActionKeys.playerScored, scoreAmount);
+
+            Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, healthAmount);
 
             Destroy(gameObject);
 

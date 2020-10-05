@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
 {
     public float sightRadius = 4f;
 
-    public int health;
+    //public int health;
 
     public float moveSpeed = 1.1f;
+
+    public int damageAmount = -1;
 
     public Transform target;
 
@@ -40,8 +42,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("collision with player: " + gameObject.name);
 
-            // add damageg
-            //Messenger.Broadcast<int>(GameActionKeys.playerDamaged, scoreAmount);
+            Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, damageAmount);
 
             Destroy(gameObject);
 

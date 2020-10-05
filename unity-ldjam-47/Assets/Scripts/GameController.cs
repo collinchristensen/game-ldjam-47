@@ -13,10 +13,12 @@ public class GameActionKeys
     //public static string gameStart = "game-start";
 
     public static string gamePlayerSpawned = "game-player-spawned";
+    public static string gamePlayerDefeat = "game-player-defeat";
 
     // entity states
 
     public static string playerScored = "player-scored";
+    public static string playerHealthChanged = "player-health-changed";
 
     // ui events
 
@@ -24,6 +26,7 @@ public class GameActionKeys
     public static string buttonOptions = "ButtonOptions";
     public static string buttonBackToMenu = "ButtonBackToMenu";
     public static string buttonQuit = "ButtonQuit";
+
 }
 
 public class GameController : MonoBehaviour
