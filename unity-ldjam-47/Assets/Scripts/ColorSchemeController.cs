@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ColorController : MonoBehaviour
+public class ColorSchemeController : MonoBehaviour
 {
     public Color colorA;
     public Color colorB;

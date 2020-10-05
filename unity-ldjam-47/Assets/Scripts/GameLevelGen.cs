@@ -80,11 +80,10 @@ public class GameLevelGen : MonoBehaviour
     List<Chunk> chunksRight;
 
     // number of chunks generated on either side of the current chunk
-    public int chunkBuffer = 3;
-
+    public int chunkBuffer = 2;
 
     private int hubWidth = 7;
-    private int hubHeight = 7;
+    private int hubHeight = 9;
 
     private int dungeonWidth = 21;
 
@@ -138,11 +137,11 @@ public class GameLevelGen : MonoBehaviour
         }
         for (int i = 1; i < chunkBuffer - 1; i++)
         {
-            Chunk temp = GenerateLevel("hub-1-3", -hubWidth * i, 0);
+            Chunk temp = GenerateLevel("hub-1-3",-hubWidth * i, 0);
             chunksLeft.Add(temp);
         }
 
-        CopyLevel(spawnPointHub, 10, 10);
+        //CopyLevel(spawnPointHub, 10, 10);
 
         // after generation complete, rotate level transform
 
