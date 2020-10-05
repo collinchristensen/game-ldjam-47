@@ -23,6 +23,7 @@ public class GameActionKeys
     public static string buttonPlay = "ButtonPlay";
     public static string buttonOptions = "ButtonOptions";
     public static string buttonBackToMenu = "ButtonBackToMenu";
+    public static string buttonQuit = "ButtonQuit";
 }
 
 public class GameController : MonoBehaviour
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
 
 
 
+    // bend transition control for game state
     float startXMargin = -100f;
     float startXCurvature = 1f;
 
@@ -45,6 +47,7 @@ public class GameController : MonoBehaviour
     float finalXMargin = 0f;
     float finalXCurvature = -1f;
 
+    float defeatedXMargin = -20f;
 
     private void OnEnable()
     {
@@ -88,20 +91,18 @@ public class GameController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        //ShowMainMenu();
+        ShowMainMenu();
 
         bendController.SetXFlatMargin(startXMargin);
         bendController.SetXCurvature(startXCurvature);
 
-        ShowGame();
-
-        FirstBendTransition();
+        //ShowGame();
     }
 
     private void FirstBendTransition()
     {
-        float delay = 1f;
-        float duration = 1.1f;
+        float delay = 0f;
+        float duration = .5f;
 
         // lerp from -100 flat margin to 0, and 1 x curvature to -1
 
@@ -114,7 +115,7 @@ public class GameController : MonoBehaviour
                 "to", finalMarginCurvature,
                 "delay", delay,
                 "time", duration,
-                "easetype", iTween.EaseType.easeOutQuad,
+                "easetype", iTween.EaseType.easeInQuad,
                 "onupdate", "updateMarginCurvature",
                 "oncomplete", "FirstBendTransitionComplete"
                 )
@@ -136,7 +137,7 @@ public class GameController : MonoBehaviour
     private void SecondBendTransition()
     {
         float delay = 0f;
-        float duration = .6f;
+        float duration = .3f;
 
         // lerp from -100 flat margin to 0, and 1 x curvature to -1
 
@@ -149,17 +150,47 @@ public class GameController : MonoBehaviour
                 "to", finalMarginCurvature,
                 "delay", delay,
                 "time", duration,
-                "easetype", iTween.EaseType.easeInQuad,
+                "easetype", iTween.EaseType.easeOutQuad,
                 "onupdate", "updateMarginCurvature",
                 "oncomplete", "SecondBendTransitionComplete"
                 )
             );
 
     }
+
+    private void DefeatedBendTransition()
+    {
+        float delay = 0f;
+        float duration = .3f;
+
+        // lerp from -100 flat margin to 0, and 1 x curvature to -1
+
+        Vector2 startMarginCurvature = new Vector2(finalXMargin, finalXCurvature);
+        Vector2 finalMarginCurvature = new Vector2(defeatedXMargin, finalXCurvature);
+
+        iTween.ValueTo(this.gameObject,
+            iTween.Hash(
+                "from", startMarginCurvature,
+                "to", finalMarginCurvature,
+                "delay", delay,
+                "time", duration,
+                "easetype", iTween.EaseType.easeOutQuad,
+                "onupdate", "updateMarginCurvature",
+                "oncomplete", "DefeatedBendTransitionComplete"
+                )
+            );
+
+    }
+
     public void SecondBendTransitionComplete()
     {
         // broadcast
     }
+    public void DefeatedBendTransitionComplete()
+    {
+        // broadcast
+    }
+
 
     private void OnButtonClicked(GameObject go)
     {
@@ -184,6 +215,10 @@ public class GameController : MonoBehaviour
         {
             ShowMainMenu();
         }
+        else if (action.Contains(GameActionKeys.buttonQuit))
+        {
+            DefeatedBendTransition();
+        }
 
     }
 
@@ -207,6 +242,8 @@ public class GameController : MonoBehaviour
         UIOptionsMenu.SetActive(false);
 
         UIGame.SetActive(true);
+
+        FirstBendTransition();
     }
 
 }
