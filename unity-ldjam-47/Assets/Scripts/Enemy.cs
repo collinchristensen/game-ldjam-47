@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Enemy : MonoBehaviour
 {
-    public float sightRadius = 5.5f;
+    public float sightRadius = 4f;
 
     public int health;
 
