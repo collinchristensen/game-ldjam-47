@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int scoreAmount;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+
+        if (other.tag == "Player")
+        {
+            Debug.Log("collision with player: " + gameObject.name);
+
+            // add score
+            Messenger.Broadcast<int>(GameActionKeys.playerScored, scoreAmount);
+
+            Destroy(gameObject);
+
+        }
+
     }
 }

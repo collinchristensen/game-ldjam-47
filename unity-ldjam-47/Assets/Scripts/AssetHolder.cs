@@ -30,6 +30,7 @@ public class AssetHolder : MonoBehaviour
 
     public GameObject SpawnObject(GameObject go, Transform levelsTransform, int x, int y)
     {
+
         GameObject temp;
 
         Vector3 pos = new Vector3(x, y);
