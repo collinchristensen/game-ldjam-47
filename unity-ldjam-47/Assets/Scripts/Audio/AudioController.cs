@@ -75,10 +75,16 @@ public class AudioController : MonoBehaviour
 
     }
 
-    public void PlayMusic()
+    public void PlayGameMusic()
     {
 
         AudioManager.instance.PlayMusic(gameMusic);
+
+    }
+    public void PlayMenuMusic()
+    {
+
+        AudioManager.instance.PlayMusic(menuMusic);
 
     }
 }

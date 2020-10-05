@@ -240,6 +240,7 @@ public class GameController : MonoBehaviour
 
     private void ShowMainMenu()
     {
+        AudioController.instance.PlayMenuMusic();
         UIOptionsMenu.SetActive(false);
         UIGame.SetActive(false);
 
@@ -254,13 +255,13 @@ public class GameController : MonoBehaviour
     }
     private void ShowGame()
     {
+        AudioController.instance.PlayGameMusic();
         UIMainMenu.SetActive(false);
         UIOptionsMenu.SetActive(false);
 
         UIGame.SetActive(true);
 
         FirstBendTransition();
-        AudioController.instance.PlayMusic();
     }
 
 }

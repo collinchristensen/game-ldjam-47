@@ -1772,7 +1772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &739215018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3470,7 +3470,7 @@ MonoBehaviour:
   defeatSound: {fileID: 8300000, guid: 71c8240d0fbacb749a477c19c7367b6b, type: 3}
   selectSound: {fileID: 8300000, guid: a6454c00576a94f419999bb0edf0e31f, type: 3}
   gameMusic: {fileID: 8300000, guid: f3509cc6485979c47ba9dc42b9d0b162, type: 3}
-  menuMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: 4844ee28e04fe4846badbeaff38d8419, type: 3}
 --- !u!1 &1479205462
 GameObject:
   m_ObjectHideFlags: 0
