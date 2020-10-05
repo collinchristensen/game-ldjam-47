@@ -15,13 +15,21 @@ public class Score : MonoBehaviour
     private void OnEnable()
     {
         Messenger.AddListener<int>(GameActionKeys.playerScored, OnPlayerScored);
+        Messenger.AddListener(GameActionKeys.gameResetState, OnGameResetState);
 
     }
 
     private void OnDisable()
     {
         Messenger.RemoveListener<int>(GameActionKeys.playerScored, OnPlayerScored);
+        Messenger.RemoveListener(GameActionKeys.gameResetState, OnGameResetState);
 
+    }
+
+    private void OnGameResetState()
+    {
+        score = 0;
+        scoreText.text = score.ToString("00000");
     }
 
     private void OnPlayerScored(int val)

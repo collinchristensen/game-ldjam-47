@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
 
     private void OnGamePlayerDefeat()
     {
+        AudioController.instance.PlayDefeatSound();
         DefeatedBendTransition();
     }
 
@@ -218,6 +219,8 @@ public class GameController : MonoBehaviour
         string action = go.name;
 
         Debug.Log("OnButtonClicked: " + action);
+
+        AudioController.instance.PlaySelectSound();
 
         if (action.Contains(GameActionKeys.buttonPlay))
         {
