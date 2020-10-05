@@ -27,6 +27,7 @@ public class Score : MonoBehaviour
     private void OnPlayerScored(int val)
     {
         score += val;
-        scoreText.text = String.Format("00000:0",score);
+        //scoreText.text = String.Format("00000:{0}",score);
+        scoreText.text = score.ToString("00000");
     }
 }

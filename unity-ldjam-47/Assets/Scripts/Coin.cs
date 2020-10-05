@@ -19,6 +19,7 @@ public class Coin : MonoBehaviour
             Messenger.Broadcast<int>(GameActionKeys.playerScored, scoreAmount);
 
             Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, healthAmount);
+            AudioController.instance.PlayCoinSound();
 
             Destroy(gameObject);
 

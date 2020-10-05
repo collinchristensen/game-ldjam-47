@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
             //Debug.Log("collision with player: " + gameObject.name);
 
             Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, damageAmount);
+            AudioController.instance.PlayHurtSound();
 
             Destroy(gameObject);
 

@@ -260,6 +260,7 @@ public class GameController : MonoBehaviour
         UIGame.SetActive(true);
 
         FirstBendTransition();
+        AudioController.instance.PlayMusic();
     }
 
 }

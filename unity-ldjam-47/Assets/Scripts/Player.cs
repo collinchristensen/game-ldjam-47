@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
 
         GameObject temp = Instantiate(projectile, transform.position, transform.rotation);
         temp.GetComponent<Projectile>().MovementDirection = move;
+        AudioController.instance.PlayShootSound();
 
         yield return new WaitForSeconds(fireRate);
 
