@@ -1,0 +1,16 @@
+﻿{
+  "code":"corner-topright",
+  "type":"corner",
+  "size":"9x9",
+  "data" : [
+    "WWWWWWWWW",
+    "W  ===  W",
+    "W.-===-.W",
+    "= ===== W",
+    "========W",
+    "= ===== W",
+    "W.-===-.W",
+    "W  ===  W",
+    "WWW===WWW"
+   ]
+}

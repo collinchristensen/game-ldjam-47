@@ -81,7 +81,7 @@ public class GameLevelGen : MonoBehaviour
     // number of chunks generated on either side of the current chunk
     public int chunkBuffer = 2;
 
-    private int hubWidth = 7;
+    private int hubWidth = 9;
     private int hubHeight = 9;
 
     private int dungeonWidth = 21;
@@ -137,32 +137,60 @@ public class GameLevelGen : MonoBehaviour
         //GenerateStartHub();
         //GenerateRandomHub();
 
-        Chunk spawnPointHub;
-        spawnPointHub = GenerateLevel("hub-1-0-start", 0, 0);
 
 
 
         //GenerateLevel("megadungeon-1-0", 0, 0);
 
-        //for (int i = 1; i < 25; i++)
+        //for (int i = 1; i < chunkBuffer - 1; i++)
         //{
-        //    GenerateLevel("hub-1-2", 7 * i, 0);
+        //    Chunk temp = GenerateLevel("hub-1-1", hubWidth * i, 0);
+        //    chunksRight.Add(temp);
         //}
-        //for (int i = 1; i < 25; i++)
+        //for (int i = 1; i < chunkBuffer - 1; i++)
         //{
-        //    GenerateLevel("hub-1-2", -7 * i, 0);
+        //    Chunk temp = GenerateLevel("hub-1-1", -hubWidth * i, 0);
+        //    chunksLeft.Add(temp);
         //}
 
-        for (int i = 1; i < chunkBuffer - 1; i++)
-        {
-            Chunk temp = GenerateLevel("hub-1-2", hubWidth * i, 0);
-            chunksRight.Add(temp);
-        }
-        for (int i = 1; i < chunkBuffer - 1; i++)
-        {
-            Chunk temp = GenerateLevel("hub-1-3", -hubWidth * i, 0);
-            chunksLeft.Add(temp);
-        }
+
+        // temporary hardcode
+        // TODO: check chunk distance and spawn and despawn by player radius
+
+        Chunk spawnPointHub;
+        spawnPointHub = GenerateLevel("hub-1-0-start", 0, 0);
+
+        GenerateLevel("hub-1-1", 9, 0);
+        GenerateLevel("hub-1-1", 18, 0);
+        GenerateLevel("hub-1-1", 27, 0);
+
+        GenerateLevel("corner-bottomright", 36, 0);
+
+        GenerateLevel("edge-vertical", 36, 9);
+        GenerateLevel("edge-vertical", 36, 18);
+
+        GenerateLevel("corner-topright", 36, 27);
+
+        GenerateLevel("edge-horizontal", 27, 27);
+        GenerateLevel("edge-horizontal", 18, 27);
+        GenerateLevel("edge-horizontal", 9, 27);
+
+        GenerateLevel("hub-1-1", 0, 27);
+
+        GenerateLevel("edge-horizontal", -9, 27);
+        GenerateLevel("edge-horizontal", -18, 27);
+        GenerateLevel("edge-horizontal", -27, 27);
+
+        GenerateLevel("corner-topleft", -36, 27);
+
+        GenerateLevel("edge-vertical", -36, 18);
+        GenerateLevel("edge-vertical", -36, 9);
+
+        GenerateLevel("corner-bottomleft", -36, 0);
+
+        GenerateLevel("hub-1-1", -27, 0);
+        GenerateLevel("hub-1-1", -18, 0);
+        GenerateLevel("hub-1-1", -9, 0);
 
         //CopyLevel(spawnPointHub, 10, 10);
 

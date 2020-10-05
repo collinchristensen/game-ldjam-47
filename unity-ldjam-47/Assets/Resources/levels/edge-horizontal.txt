@@ -1,0 +1,16 @@
+﻿{
+  "code":"edge-horizontal",
+  "type":"edge",
+  "size":"9x9",
+  "data" : [
+    "WWWWWWWWW",
+    "W  ---  W",
+    "W.-----.W",
+    "- ----- -",
+    "---------",
+    "- ----- -",
+    "W.-----.W",
+    "W  ---  W",
+    "WWWWWWWWW"
+   ]
+}

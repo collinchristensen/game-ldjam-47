@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
 
             Vector3 newPosition = transform.position;
             newPosition.x = Mathf.Lerp(newPosition.x, target.position.x, movementSpeed * Time.deltaTime);
+            newPosition.y = Mathf.Lerp(newPosition.y, target.position.y-6f, .5f*movementSpeed * Time.deltaTime);
             transform.localPosition = newPosition;
         }
     }

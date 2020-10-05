@@ -1,16 +1,16 @@
 ﻿{
   "code":"hub-1-1",
   "type":"hub",
-  "size":"7x9",
+  "size":"9x9",
   "data" : [
-    "WWWDWWW",
-    "W  -  W",
-    "O.---.O",
-    "W  -  W",
-    "=======",
-    "W  -  W",
-    "O.---.O",
-    "W  -  W",
-    "WWWDWWW"
+    "WWWWWWWWW",
+    "W  ---  W",
+    "O.-----.O",
+    "O  ---  -",
+    "=========",
+    "-  ---  O",
+    "O.-----.O",
+    "W  ---  W",
+    "WWWWWWWWW"
    ]
 }
