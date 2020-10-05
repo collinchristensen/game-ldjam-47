@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     public CharacterController controller;
 
-    public float movementSpeed = 10f;
+    public float movementSpeed = 5f;
 
     private float horizontalMovement = 0f;
     private float verticalMovement = 0f;

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     public int health;
 
-    public float moveSpeed = 2f;
+    public float moveSpeed = 1.1f;
 
     public Transform target;
 

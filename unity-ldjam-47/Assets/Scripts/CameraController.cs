@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     //public Vector3 offset;
 
-    public float movementSpeed = 5f;
+    public float movementSpeed = 4f;
 
     private void Start()
     {

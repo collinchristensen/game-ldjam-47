@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 
@@ -29,6 +31,19 @@ public class GameController : MonoBehaviour
     public GameObject UIMainMenu;
     public GameObject UIOptionsMenu;
     public GameObject UIGame;
+
+    public BendShaderControlYZ bendController;
+
+
+
+    float startXMargin = -100f;
+    float startXCurvature = 1f;
+
+    float midXMargin = -1f;
+    float midXCurvature = 0f;
+
+    float finalXMargin = 0f;
+    float finalXCurvature = -1f;
 
 
     private void OnEnable()
@@ -75,8 +90,75 @@ public class GameController : MonoBehaviour
 
         //ShowMainMenu();
 
+        bendController.SetXFlatMargin(startXMargin);
+        bendController.SetXCurvature(startXCurvature);
+
         ShowGame();
 
+        FirstBendTransition();
+    }
+
+    private void FirstBendTransition()
+    {
+        float delay = 1f;
+        float duration = 1.1f;
+
+        // lerp from -100 flat margin to 0, and 1 x curvature to -1
+
+        Vector2 startMarginCurvature = new Vector2(startXMargin, startXCurvature);
+        Vector2 finalMarginCurvature = new Vector2(midXMargin, midXCurvature);
+
+        iTween.ValueTo(this.gameObject,
+            iTween.Hash(
+                "from", startMarginCurvature,
+                "to", finalMarginCurvature,
+                "delay", delay,
+                "time", duration,
+                "easetype", iTween.EaseType.easeOutQuad,
+                "onupdate", "updateMarginCurvature",
+                "oncomplete", "FirstBendTransitionComplete"
+                )
+            );
+
+    }
+
+    public void updateMarginCurvature(Vector2 val)
+    {
+        bendController.SetXFlatMargin(val.x);
+        bendController.SetXCurvature(val.y);
+    }
+
+    public void FirstBendTransitionComplete()
+    {
+        SecondBendTransition();
+    }
+
+    private void SecondBendTransition()
+    {
+        float delay = 0f;
+        float duration = .6f;
+
+        // lerp from -100 flat margin to 0, and 1 x curvature to -1
+
+        Vector2 startMarginCurvature = new Vector2(midXMargin, midXCurvature);
+        Vector2 finalMarginCurvature = new Vector2(finalXMargin, finalXCurvature);
+
+        iTween.ValueTo(this.gameObject,
+            iTween.Hash(
+                "from", startMarginCurvature,
+                "to", finalMarginCurvature,
+                "delay", delay,
+                "time", duration,
+                "easetype", iTween.EaseType.easeInQuad,
+                "onupdate", "updateMarginCurvature",
+                "oncomplete", "SecondBendTransitionComplete"
+                )
+            );
+
+    }
+    public void SecondBendTransitionComplete()
+    {
+        // broadcast
     }
 
     private void OnButtonClicked(GameObject go)

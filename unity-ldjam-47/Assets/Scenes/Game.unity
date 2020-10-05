@@ -270,12 +270,12 @@ GameObject:
   - component: {fileID: 171024941}
   - component: {fileID: 171024942}
   m_Layer: 0
-  m_Name: CurvedShader
+  m_Name: CurvedShaderUnscripted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &171024941
 Transform:
   m_ObjectHideFlags: 0
@@ -1793,6 +1793,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c616de7778e14b4ab4f5668d6a8327b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1271857504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271857506}
+  - component: {fileID: 1271857505}
+  m_Layer: 0
+  m_Name: CurvedShaderController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1271857505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271857504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a23a575bdd1724ba48a70bf35ee256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_curveOrigin: {fileID: 1663922518}
+  m_curvatureScale: 5120
+  m_xCurvature: -1
+  m_zCurvature: 0
+  m_xFlatMargin: 0
+  m_zFlatMargin: 0
+--- !u!4 &1271857506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271857504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346491816
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2582,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -34, y: 0, z: 0}
 --- !u!114 &1663922519
 MonoBehaviour:
@@ -2542,12 +2591,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663922515}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8787d5a4332aec44912f06cbb704de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: -1, z: -12}
   movementSpeed: 5
 --- !u!1 &1787492342
 GameObject:
@@ -2763,6 +2811,7 @@ MonoBehaviour:
   UIMainMenu: {fileID: 1479205462}
   UIOptionsMenu: {fileID: 787476894}
   UIGame: {fileID: 1907001843}
+  bendController: {fileID: 0}
 --- !u!1 &2040867210
 GameObject:
   m_ObjectHideFlags: 0
