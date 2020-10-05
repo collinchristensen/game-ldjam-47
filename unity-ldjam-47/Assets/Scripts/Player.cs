@@ -102,4 +102,11 @@ public class Player : MonoBehaviour
 
         allowFire = true;
     }
+
+    public void SetPlayerPosition(float x, float y)
+    {
+        controller.enabled = false;
+        transform.position = new Vector3(x, y, 0f);
+        controller.enabled = true;
+    }
 }

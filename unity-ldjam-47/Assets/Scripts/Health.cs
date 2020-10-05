@@ -34,6 +34,10 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            AddHealth(-1);
+        }
 
         for (int i = 0; i < healthUnits.Count; i++)
         {

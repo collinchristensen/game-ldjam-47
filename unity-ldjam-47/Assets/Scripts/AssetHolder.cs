@@ -23,6 +23,8 @@ public class AssetHolder : MonoBehaviour
 
     public Transform levelsTransform;
 
+    private Vector3 spawnPointVector;
+
     public GameObject SpawnObject(GameObject go, int x, int y)
     {
         return SpawnObject(go, levelsTransform, x, y);
@@ -38,6 +40,14 @@ public class AssetHolder : MonoBehaviour
 
         return temp;
     }
+    //public GameObject MoveObject(GameObject go, int x, int y)
+    //{
+    //    Vector3 pos = new Vector3(x, y);
+    //    go.transform.parent = levelsTransform;
+    //    //go.transform.position = pos;
+
+    //    return go;
+    //}
 
     public void RotateLevel()
     {

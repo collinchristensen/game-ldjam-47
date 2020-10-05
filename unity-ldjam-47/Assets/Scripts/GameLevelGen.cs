@@ -87,6 +87,9 @@ public class GameLevelGen : MonoBehaviour
 
     private int dungeonWidth = 21;
 
+
+
+    // path must end in  .json, file itself must end in .json.txt
     //public string LoadDataFromResources(string path)
     //{
     //    string dataValue = "";
@@ -100,9 +103,30 @@ public class GameLevelGen : MonoBehaviour
     //    return dataValue;
     //}
 
-    // path must end in  .json, file itself must end in .json.txt
+    private void OnEnable()
+    {
+        Messenger.AddListener(GameActionKeys.gameResetState, OnGameResetState);
+
+    }
+
+    private void OnDisable()
+    {
+        Messenger.RemoveListener(GameActionKeys.gameResetState, OnGameResetState);
+
+    }
+
+    private void OnGameResetState()
+    {
+        ResetLevels();
+    }
 
     private void Awake()
+    {
+        ResetLevels();
+        
+    }
+
+    private void ResetLevels()
     {
         chunksLeft = new List<Chunk>();
         chunksRight = new List<Chunk>();
@@ -130,14 +154,14 @@ public class GameLevelGen : MonoBehaviour
         //    GenerateLevel("hub-1-2", -7 * i, 0);
         //}
 
-        for (int i = 1; i < chunkBuffer -1; i++)
+        for (int i = 1; i < chunkBuffer - 1; i++)
         {
             Chunk temp = GenerateLevel("hub-1-2", hubWidth * i, 0);
             chunksRight.Add(temp);
         }
         for (int i = 1; i < chunkBuffer - 1; i++)
         {
-            Chunk temp = GenerateLevel("hub-1-3",-hubWidth * i, 0);
+            Chunk temp = GenerateLevel("hub-1-3", -hubWidth * i, 0);
             chunksLeft.Add(temp);
         }
 
@@ -404,7 +428,17 @@ public class GameLevelGen : MonoBehaviour
 
     private GameObject SpawnSpawnPoint(int x, int y)
     {
-        return assetHolder.SpawnObject(assetHolder.player, x, y);
+        if (Player.Instance == null)
+        {
+            return assetHolder.SpawnObject(assetHolder.player, x, y);
+        }
+        else
+        {
+            Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, 20);
+            Player.Instance.SetPlayerPosition(3f, 5f);
+            return Player.Instance.gameObject;
+        }
+
     }
 
     private GameObject SpawnWallWithProbability(int x, int y, int numerator, int maxRange)
