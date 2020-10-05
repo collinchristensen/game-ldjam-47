@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 124490868619497853}
   - component: {fileID: 124490868619497850}
   - component: {fileID: 124490868619497851}
-  - component: {fileID: 124490868619497852}
+  - component: {fileID: 8626858620435098643}
   m_Layer: 0
-  m_Name: tile-actor-floor2
+  m_Name: tile-floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &124490868619497852
-MeshCollider:
+--- !u!65 &8626858620435098643
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,8 +91,7 @@ MeshCollider:
   m_GameObject: {fileID: 124490868619497854}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

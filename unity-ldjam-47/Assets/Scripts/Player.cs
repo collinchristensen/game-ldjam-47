@@ -7,10 +7,10 @@ public class Player : MonoBehaviour
 
     public CharacterController controller;
 
-    public float movementSpeed = 20f;
+    public float movementSpeed = 10f;
 
-    float horizontalMovement = 0f;
-    float verticalMovement = 0f;
+    private float horizontalMovement = 0f;
+    private float verticalMovement = 0f;
 
     bool ready = false;
 
@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
         if (controller != null)
         {
             ready = true;
+
+            //controller.detectCollisions = false;
         }
     }
 
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
     {
         if (ready)
         {
-            Vector3 move = new Vector3(horizontalMovement, 0, verticalMovement);
+            Vector3 move = new Vector3(horizontalMovement, verticalMovement);
             controller.Move(move * Time.deltaTime * movementSpeed);
         }
 
