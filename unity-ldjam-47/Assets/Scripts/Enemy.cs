@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     public float sightRadius = 4f;
 
-    //public int health;
+    public int health = 1;
 
     public float moveSpeed = 1.1f;
 
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         if (target != null)
         {
-            Debug.Log("Player position = " + target.position.x);
+            //Debug.Log("Player position = " + target.position.x);
 
             float distance = Vector3.Distance(target.position, transform.position);
 
@@ -72,6 +73,16 @@ public class Enemy : MonoBehaviour
 
                 transform.position += faceDir * moveSpeed * Time.deltaTime;
             }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

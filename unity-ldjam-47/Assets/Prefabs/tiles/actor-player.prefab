@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1271341753}
   - component: {fileID: 3485119856164718783}
   - component: {fileID: -6806677214363460029}
+  - component: {fileID: 416974039}
   m_Layer: 0
   m_Name: actor-player
   m_TagString: Player
@@ -217,7 +218,7 @@ BoxCollider:
   m_GameObject: {fileID: 7092469218131139733}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.6, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}
@@ -234,7 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  movementSpeed: 20
+  movementSpeed: 9
+  projectile: {fileID: 8934616860536004040, guid: 90cad3e9cc0b8594dacefbd6877ec3b4, type: 3}
 --- !u!143 &-6806677214363460029
 CharacterController:
   m_ObjectHideFlags: 0
@@ -252,4 +254,18 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.2
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &416974039
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092469218131139733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Height: 5
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}

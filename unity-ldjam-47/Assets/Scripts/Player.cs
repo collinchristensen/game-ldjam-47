@@ -14,7 +14,15 @@ public class Player : MonoBehaviour
 
     bool ready = false;
 
+    private bool allowFire;
+    public GameObject projectile;
+    private float fireRate = 0.1f;
+
+    Vector3 move;
+
+
     public static Player _instance;
+
     public static Player Instance
     {
         get
@@ -50,6 +58,10 @@ public class Player : MonoBehaviour
 
             //controller.detectCollisions = false;
         }
+
+        // instantiate
+        move = Vector3.zero;
+        allowFire = true;
     }
 
     void Update()
@@ -65,10 +77,27 @@ public class Player : MonoBehaviour
     {
         if (ready)
         {
-            Vector3 move = new Vector3(horizontalMovement, verticalMovement);
+            move = new Vector3(horizontalMovement, verticalMovement);
             controller.Move(move * Time.deltaTime * movementSpeed);
+            if (allowFire)
+            {
+                StartCoroutine("Fire");
+            }
         }
 
 
+    }
+
+    IEnumerator Fire()
+    {
+        Debug.Log("PROJECTILE");
+        allowFire = false;
+
+        GameObject temp = Instantiate(projectile, transform.position, transform.rotation);
+        temp.GetComponent<Projectile>().MovementDirection = move;
+
+        yield return new WaitForSeconds(fireRate);
+
+        allowFire = true;
     }
 }
