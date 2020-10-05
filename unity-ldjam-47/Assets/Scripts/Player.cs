@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,9 +78,10 @@ public class Player : MonoBehaviour
     {
         if (ready)
         {
+            //Debug.Log(move);
             move = new Vector3(horizontalMovement, verticalMovement);
             controller.Move(move * Time.deltaTime * movementSpeed);
-            if (allowFire)
+            if (allowFire && (Math.Abs(move.x) > 0.2 || Math.Abs(move.y) > 0.2))
             {
                 StartCoroutine("Fire");
             }
@@ -90,7 +92,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Fire()
     {
-        Debug.Log("PROJECTILE");
+        //Debug.Log("PROJECTILE");
         allowFire = false;
 
         GameObject temp = Instantiate(projectile, transform.position, transform.rotation);

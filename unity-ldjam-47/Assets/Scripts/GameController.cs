@@ -15,6 +15,8 @@ public class GameActionKeys
     public static string gamePlayerSpawned = "game-player-spawned";
     public static string gamePlayerDefeat = "game-player-defeat";
 
+    public static string gameResetState = "game-reset";
+
     // entity states
 
     public static string playerScored = "player-scored";
@@ -26,7 +28,6 @@ public class GameActionKeys
     public static string buttonOptions = "ButtonOptions";
     public static string buttonBackToMenu = "ButtonBackToMenu";
     public static string buttonQuit = "ButtonQuit";
-
 }
 
 public class GameController : MonoBehaviour
@@ -60,8 +61,9 @@ public class GameController : MonoBehaviour
         // Game event listeners
         Messenger.AddListener<int>(GameActionKeys.playerScored, OnPlayerScored);
 
+        Messenger.AddListener(GameActionKeys.gamePlayerDefeat, OnGamePlayerDefeat);
 
-        // debug
+
         Messenger.AddListener(GameActionKeys.gamePlayerSpawned, OnPlayerSpawned);
 
     }
@@ -74,10 +76,17 @@ public class GameController : MonoBehaviour
         // Game event listeners
         Messenger.RemoveListener<int>(GameActionKeys.playerScored, OnPlayerScored);
 
+        Messenger.RemoveListener(GameActionKeys.gamePlayerDefeat, OnGamePlayerDefeat);
 
-        // debug
+
+
         Messenger.RemoveListener(GameActionKeys.gamePlayerSpawned, OnPlayerSpawned);
 
+    }
+
+    private void OnGamePlayerDefeat()
+    {
+        DefeatedBendTransition();
     }
 
     private void OnPlayerScored(int scoreAmount)
@@ -105,7 +114,7 @@ public class GameController : MonoBehaviour
     private void FirstBendTransition()
     {
         float delay = 0f;
-        float duration = .5f;
+        float duration = .6f;
 
         // lerp from -100 flat margin to 0, and 1 x curvature to -1
 
@@ -140,7 +149,7 @@ public class GameController : MonoBehaviour
     private void SecondBendTransition()
     {
         float delay = 0f;
-        float duration = .3f;
+        float duration = .4f;
 
         // lerp from -100 flat margin to 0, and 1 x curvature to -1
 
@@ -187,11 +196,15 @@ public class GameController : MonoBehaviour
 
     public void SecondBendTransitionComplete()
     {
-        // broadcast
+        // TODO: broadcast
     }
     public void DefeatedBendTransitionComplete()
     {
-        // broadcast
+        // TODO: broadcast
+
+        Messenger.Broadcast(GameActionKeys.gameResetState);
+
+        ShowMainMenu();
     }
 
 

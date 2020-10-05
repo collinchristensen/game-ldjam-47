@@ -9,11 +9,11 @@ public class Enemy : MonoBehaviour
 {
     public float sightRadius = 4f;
 
-    public int health = 1;
+    public int health = 10;
 
     public float moveSpeed = 1.1f;
 
-    public int damageAmount = -1;
+    public int damageAmount = -4;
 
     public Transform target;
 
@@ -41,13 +41,23 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("collision with player: " + gameObject.name);
+            //Debug.Log("collision with player: " + gameObject.name);
 
             Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, damageAmount);
 
             Destroy(gameObject);
 
         }
+        //else if (other.tag == "projectile" || other.name.Contains("projectile"))
+        //{
+        //    Debug.Log("enemy collided with projectile");
+        //    health--;
+        //    if (health <= 0)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //    Destroy(other);
+        //}
 
     }
 

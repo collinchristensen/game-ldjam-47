@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5725067404888621417}
   - component: {fileID: 881789662}
   - component: {fileID: -2853688582184892824}
+  - component: {fileID: 4849120337975527437}
   m_Layer: 0
   m_Name: actor-portal
   m_TagString: Untagged
@@ -137,5 +138,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 161ef307b26cd044c89f4b8438935c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4849120337975527437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725067404888621418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9db2f5da3e2d234fbd9c164cc86c2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -24,7 +26,9 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("enemy"))
+        Debug.Log("projectile collided with" + other.name);
+
+        if (other.tag == "enemy")
         {
             other.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);

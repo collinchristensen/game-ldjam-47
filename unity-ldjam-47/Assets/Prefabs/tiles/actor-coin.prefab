@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8934616860536004043}
   - component: {fileID: 1155129418}
   - component: {fileID: 5047716440297659240}
+  - component: {fileID: 1041662212304899167}
   m_Layer: 0
   m_Name: actor-coin
   m_TagString: Untagged
@@ -140,3 +141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreAmount: 1
+  healthAmount: 1
+--- !u!114 &1041662212304899167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8934616860536004040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9db2f5da3e2d234fbd9c164cc86c2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

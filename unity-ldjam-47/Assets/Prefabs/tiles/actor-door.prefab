@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 5725067404888621417}
   - component: {fileID: 881789662}
   - component: {fileID: 9176681102933586120}
+  - component: {fileID: -6891756903229596590}
   m_Layer: 0
   m_Name: actor-door
   m_TagString: Untagged
@@ -152,5 +153,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 166168c3a92da1d43bec0bad08468282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6891756903229596590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725067404888621418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9db2f5da3e2d234fbd9c164cc86c2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -136,9 +136,14 @@ static internal class Messenger {
     static public void OnBroadcasting(string eventType) {
 #if REQUIRE_LISTENER
         if (!eventTable.ContainsKey(eventType)) {
-            throw new BroadcastException(string.Format("Broadcasting message \"{0}\" but no listener found. Try marking the message with Messenger.MarkAsPermanent.", eventType));
+            //throw new BroadcastException(string.Format("Broadcasting message \"{0}\" but no listener found. Try marking the message with Messenger.MarkAsPermanent.", eventType));
         }
 #endif
+    }
+
+    internal static void Broadcast(object playedDefeatAnimation)
+    {
+        throw new NotImplementedException();
     }
 
     static public BroadcastException CreateBroadcastSignatureException(string eventType) {
