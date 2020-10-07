@@ -95,7 +95,17 @@ public class Player : MonoBehaviour
         //Debug.Log("PROJECTILE");
         allowFire = false;
 
-        GameObject temp = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject temp;
+
+        if (GameGlobals.ObjectsArePooled)
+        {
+             temp = projectile.CreateGameObject(transform.position, transform.rotation, true);
+        }
+        else
+        {
+            temp = Instantiate(projectile, transform.position, transform.rotation);
+        }
+
         temp.GetComponent<Projectile>().MovementDirection = move;
         AudioController.instance.PlayShootSound();
 

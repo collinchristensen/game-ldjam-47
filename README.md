@@ -12,10 +12,15 @@ Controls: WASD or arrow keys to move, and move to shoot
 
 ## Changelog
 
+Version 0.1.2
+
+- Added internal object pooler to improve performance
+- Adjusted text style in title screen
+
 Version 0.1.1
 
 - Adjusted text style in title screen
-- Changed title from "Coin Caverns" to "Coin Cavern".
+- Changed title from "Coin Caverns" to "Coin Cavern"
 
 Version 0.1.0
 

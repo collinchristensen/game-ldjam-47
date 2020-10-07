@@ -36,10 +36,24 @@ public class AssetHolder : MonoBehaviour
         GameObject temp;
 
         Vector3 pos = new Vector3(x, y);
-        temp = Instantiate(go, pos, Quaternion.identity, levelsTransform);
+
+        if (GameGlobals.ObjectsArePooled)
+        {
+
+            Debug.Log("CREATING GAME OBJECT:" + go.name);
+            temp = go.CreateGameObject(pos, Quaternion.identity, true);
+            Debug.Log("CREATED GAME OBJECT:" + temp.name);
+            temp.transform.SetParent(levelsTransform);
+        }
+        else
+        {
+            temp = Instantiate(go, pos, Quaternion.identity, levelsTransform);
+        }
+
 
         return temp;
     }
+
     //public GameObject MoveObject(GameObject go, int x, int y)
     //{
     //    Vector3 pos = new Vector3(x, y);

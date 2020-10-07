@@ -28,6 +28,12 @@ public class GameActionKeys
     public static string buttonOptions = "ButtonOptions";
     public static string buttonBackToMenu = "ButtonBackToMenu";
     public static string buttonQuit = "ButtonQuit";
+    public static string LevelLoaded = "LevelLoaded";
+}
+
+public class GameGlobals
+{
+    public static bool ObjectsArePooled = false;
 }
 
 public class GameController : MonoBehaviour

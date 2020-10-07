@@ -18,6 +18,7 @@ public class DestroyOnReset : MonoBehaviour
 
     private void OnGameResetState()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.DestroyGameObject();
     }
 }

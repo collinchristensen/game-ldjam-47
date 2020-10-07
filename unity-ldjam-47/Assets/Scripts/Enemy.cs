@@ -46,7 +46,8 @@ public class Enemy : MonoBehaviour
             Messenger.Broadcast<int>(GameActionKeys.playerHealthChanged, damageAmount);
             AudioController.instance.PlayHurtSound();
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.DestroyGameObject();
 
         }
         //else if (other.tag == "projectile" || other.name.Contains("projectile"))
@@ -93,7 +94,8 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.DestroyGameObject();
         }
     }
 }

@@ -10,8 +10,10 @@ public class EnemyHitbox : MonoBehaviour
         if (other.tag == "projectile" || other.name.Contains("projectile"))
         {
             transform.parent.GetComponent<Enemy>().TakeDamage(1);
-            Destroy(other);
-            Destroy(gameObject);
+            //Destroy(other);
+            other.gameObject.DestroyGameObject();
+            //Destroy(gameObject);
+            gameObject.DestroyGameObject();
 
         }
     }

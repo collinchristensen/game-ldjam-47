@@ -13,9 +13,11 @@ public class Projectile : MonoBehaviour
 
     int damage = 1;
 
-    private void Awake()
+    private void OnEnable()
     {
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
+        //gameObject.DestroyDelayed(2f);
+        StartCoroutine("WaitForDestroy");
     }
 
     // Update is called once per frame
@@ -31,8 +33,17 @@ public class Projectile : MonoBehaviour
         if (other.tag == "enemy")
         {
             other.GetComponent<Enemy>().TakeDamage(damage);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.DestroyGameObject();
         }
 
+    }
+
+    IEnumerator WaitForDestroy()
+    {
+        Debug.Log("projectile coroutine");
+        yield return new WaitForSeconds(2);
+        gameObject.DestroyGameObject();
+        Debug.Log("projectile destroy");
     }
 }

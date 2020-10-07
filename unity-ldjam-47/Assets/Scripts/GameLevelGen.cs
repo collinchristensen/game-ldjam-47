@@ -192,6 +192,8 @@ public class GameLevelGen : MonoBehaviour
         GenerateLevel("hub-1-1", -18, 0);
         GenerateLevel("hub-1-1", -9, 0);
 
+        Messenger.Broadcast(GameActionKeys.LevelLoaded);
+
         //CopyLevel(spawnPointHub, 10, 10);
 
         // after generation complete, rotate level transform
