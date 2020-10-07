@@ -12,6 +12,11 @@ Controls: WASD or arrow keys to move, and move to shoot
 
 ## Changelog
 
+Version 0.1.1
+
+- Adjusted text style in title screen
+- Changed title from "Coin Caverns" to "Coin Cavern".
+
 Version 0.1.0
 
 - Ludum Dare published
