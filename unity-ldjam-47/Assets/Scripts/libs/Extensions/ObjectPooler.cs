@@ -16,8 +16,6 @@ public class ObjectPoolerItem
 public class ObjectPooler : MonoBehaviour
 {
 
-    public static ObjectPooler SharedInstance;
-
     public int maximumPooledObjects = 1000;
 
     public List<GameObject> pooledObjects;
@@ -25,9 +23,32 @@ public class ObjectPooler : MonoBehaviour
     public List<ObjectPoolerItem> itemsToPool;
 
 
+    public static ObjectPooler SharedInstance;
+
+    public static ObjectPooler Instance
+    {
+        get
+        {
+            if (SharedInstance == null)
+            {
+                SharedInstance = GameObject.FindObjectOfType<ObjectPooler>();
+            }
+
+            return SharedInstance;
+        }
+    }
+
     private void Awake()
     {
+        // singleton check
+        if (SharedInstance != null && SharedInstance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         SharedInstance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()

@@ -123,7 +123,7 @@ public static class GameObjectHelper
         else
         {
             // single object pooler
-            obj = ObjectPooler.SharedInstance.GetPooledObjectByName(go.name);
+            obj = ObjectPooler.Instance.GetPooledObjectByName(go.name);
 
             if (obj != null)
             {

@@ -123,17 +123,17 @@ public class GameLevelGen : MonoBehaviour
     {
         ResetLevels();
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     private void ResetLevels()
     {
-        chunksLeft = new List<Chunk>();
-        chunksRight = new List<Chunk>();
+        //chunksLeft = new List<Chunk>();
+        //chunksRight = new List<Chunk>();
 
         UpdateLevelData();
 
-        DebugPrintLevelData();
+        //DebugPrintLevelData();
 
         //GenerateStartHub();
         //GenerateRandomHub();

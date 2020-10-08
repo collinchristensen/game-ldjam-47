@@ -33,8 +33,8 @@ public class GameActionKeys
 
 public class GameGlobals
 {
-    public static bool ProjectilesArePooled = false;
-    public static bool ObjectsArePooled = false;
+    public static bool ProjectilesArePooled = true;
+    public static bool ObjectsArePooled = true;
 }
 
 public class GameController : MonoBehaviour

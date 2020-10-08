@@ -7,25 +7,32 @@ using UnityEngine;
 
 public class DespawnItemDistance : MonoBehaviour
 {
-    private void Start()
-    {
-        StartCoroutine("CheckVisibility");
-    }
+
+    //private bool LevelLoaded = false;
+
+
     private void OnEnable()
     {
         Messenger.AddListener(GameActionKeys.gameResetState, OnGameResetState);
+        Messenger.AddListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
 
     }
 
     private void OnDisable()
     {
         Messenger.RemoveListener(GameActionKeys.gameResetState, OnGameResetState);
+        Messenger.RemoveListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
 
     }
 
     private void OnGameResetState()
     {
         StopAllCoroutines();
+    }
+
+    private void OnLevelLoaded()
+    {
+        StartCoroutine("CheckVisibility");
     }
 
     IEnumerator CheckVisibility()

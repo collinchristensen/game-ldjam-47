@@ -2258,7 +2258,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.487
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4295,11 +4295,11 @@ MonoBehaviour:
   - prefabToPool: {fileID: 1195371281584653198, guid: 50c1ba3915895dd4c973226cb2383fcb, type: 3}
     amountToPool: 20
     shouldExpand: 1
-  - prefabToPool: {fileID: 3212753267644493152, guid: c97a19ff41e2f76409e6ef0fa9a4d46b, type: 3}
+  - prefabToPool: {fileID: 5725067404888621418, guid: 4d26c8f582207df44ac9936a7e3f88de, type: 3}
     amountToPool: 20
     shouldExpand: 1
-  - prefabToPool: {fileID: 5872442861851593285, guid: 95e76a2290e1be14db32fda7273ad73f, type: 3}
-    amountToPool: 1
+  - prefabToPool: {fileID: 124490868619497854, guid: 25a9282e7ed9ac34f8d191c8318f1c13, type: 3}
+    amountToPool: 20
     shouldExpand: 1
   - prefabToPool: {fileID: 2432475559930338770, guid: 955d88a3e62548e4aa7db9ccc243dd8a, type: 3}
     amountToPool: 20
@@ -4312,18 +4312,6 @@ MonoBehaviour:
     shouldExpand: 1
   - prefabToPool: {fileID: 6621978083007181932, guid: 807024e02d842e949a59d1e4e97ee553, type: 3}
     amountToPool: 5
-    shouldExpand: 1
-  - prefabToPool: {fileID: 5725067404888621418, guid: 4d26c8f582207df44ac9936a7e3f88de, type: 3}
-    amountToPool: 20
-    shouldExpand: 1
-  - prefabToPool: {fileID: 124490868619497854, guid: 25a9282e7ed9ac34f8d191c8318f1c13, type: 3}
-    amountToPool: 20
-    shouldExpand: 1
-  - prefabToPool: {fileID: 9043623802527131147, guid: 2e289b3b713f87446b189e9f850f2f5b, type: 3}
-    amountToPool: 20
-    shouldExpand: 1
-  - prefabToPool: {fileID: 9043623802527131147, guid: 0f47585c6997b0e42b685e5d74b93e96, type: 3}
-    amountToPool: 1
     shouldExpand: 1
 --- !u!114 &1593025592
 MonoBehaviour:
