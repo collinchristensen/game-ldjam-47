@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     Vector3 move;
 
+    public float sightRadius = 4.0f;
 
     public static Player _instance;
 
@@ -97,9 +98,9 @@ public class Player : MonoBehaviour
 
         GameObject temp;
 
-        if (GameGlobals.ObjectsArePooled)
+        if (GameGlobals.ProjectilesArePooled)
         {
-             temp = projectile.CreateGameObject(transform.position, transform.rotation, true);
+            temp = projectile.CreateGameObject(transform.position, transform.rotation, true);
         }
         else
         {

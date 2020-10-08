@@ -122,7 +122,8 @@ public class GameLevelGen : MonoBehaviour
     private void Awake()
     {
         ResetLevels();
-        
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void ResetLevels()

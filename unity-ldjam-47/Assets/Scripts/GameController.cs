@@ -33,6 +33,7 @@ public class GameActionKeys
 
 public class GameGlobals
 {
+    public static bool ProjectilesArePooled = false;
     public static bool ObjectsArePooled = false;
 }
 
@@ -92,6 +93,7 @@ public class GameController : MonoBehaviour
 
     private void OnGamePlayerDefeat()
     {
+        AudioManager.instance.efxSource.Stop();
         AudioController.instance.PlayDefeatSound();
         DefeatedBendTransition();
     }

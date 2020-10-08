@@ -34,6 +34,9 @@ public class Projectile : MonoBehaviour
         {
             other.GetComponent<Enemy>().TakeDamage(damage);
             //Destroy(gameObject);
+
+            AudioController.instance.PlayHurtSound();
+            StopAllCoroutines();
             gameObject.DestroyGameObject();
         }
 

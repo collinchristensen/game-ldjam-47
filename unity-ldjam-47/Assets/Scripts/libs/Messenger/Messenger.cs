@@ -123,7 +123,7 @@ static internal class Messenger {
             }
         }
         else {
-            throw new ListenerException(string.Format("Attempting to remove listener for type \"{0}\" but Messenger doesn't know about this event type.", eventType));
+            //throw new ListenerException(string.Format("Attempting to remove listener for type \"{0}\" but Messenger doesn't know about this event type.", eventType));
         }
     }
 

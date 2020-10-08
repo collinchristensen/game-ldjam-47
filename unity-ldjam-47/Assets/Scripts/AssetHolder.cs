@@ -40,9 +40,9 @@ public class AssetHolder : MonoBehaviour
         if (GameGlobals.ObjectsArePooled)
         {
 
-            Debug.Log("CREATING GAME OBJECT:" + go.name);
+            //Debug.Log("CREATING GAME OBJECT:" + go.name);
             temp = go.CreateGameObject(pos, Quaternion.identity, true);
-            Debug.Log("CREATED GAME OBJECT:" + temp.name);
+            //Debug.Log("CREATED GAME OBJECT:" + temp.name);
             temp.transform.SetParent(levelsTransform);
         }
         else
