@@ -14,10 +14,6 @@ Controls: WASD or arrow keys to move, and move to shoot
 
 Version 0.1.2
 
-- Optimizations
-  - Added internal object pooler to improve performance
-  - Despawned items out of view
-  - Reduced number of wall types
 - Enemies play damage sound
 - Adjusted text style in title screen
 
