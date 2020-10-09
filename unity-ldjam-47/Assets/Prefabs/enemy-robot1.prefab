@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50efd7c18868904ba87e5feaa1f0d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRadius: 5.5
+  sightRadius: 6.5
   health: 3
   moveSpeed: 1.1
   damageAmount: -4

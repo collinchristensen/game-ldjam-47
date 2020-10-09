@@ -1,70 +1,95 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
 
-// separate component added to object pooler
+//// separate component added to object pooler
 
-public class DespawnItemDistance : MonoBehaviour
-{
+//public class DespawnItemDistance : MonoBehaviour
+//{
 
-    //private bool LevelLoaded = false;
+//    private bool levelLoaded = false;
+
+//    private Transform playerTransform;
 
 
-    private void OnEnable()
-    {
-        Messenger.AddListener(GameActionKeys.gameResetState, OnGameResetState);
-        Messenger.AddListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
+//    //private void Start()
+//    //{
+//    //    StartCoroutine("CheckVisibility");
+//    //}
 
-    }
+//    private void OnEnable()
+//    {
+//        Messenger.AddListener(GameActionKeys.gameResetState, OnGameResetState);
+//        Messenger.AddListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
 
-    private void OnDisable()
-    {
-        Messenger.RemoveListener(GameActionKeys.gameResetState, OnGameResetState);
-        Messenger.RemoveListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
+//    }
 
-    }
+//    private void OnDisable()
+//    {
+//        Messenger.RemoveListener(GameActionKeys.gameResetState, OnGameResetState);
+//        Messenger.RemoveListener(GameActionKeys.LevelLoaded, OnLevelLoaded);
 
-    private void OnGameResetState()
-    {
-        StopAllCoroutines();
-    }
+//    }
 
-    private void OnLevelLoaded()
-    {
-        StartCoroutine("CheckVisibility");
-    }
+//    private void OnGameResetState()
+//    {
+//        //if (levelLoaded)
+//        //{
+//        //    StopAllCoroutines();
+//        //    levelLoaded = false;
+//        //}
+//    }
 
-    IEnumerator CheckVisibility()
-    {
-        float sightRadius = Player.Instance.sightRadius;
+//    private void OnLevelLoaded()
+//    {
+//        levelLoaded = true;
+//        StartCoroutine("CheckVisibility");
+//    }
 
-        Debug.Log("Checking Visibility");
+//    IEnumerator CheckVisibility()
+//    {
+//        float sightRadius = Player.Instance.sightRadius;
 
-        int i = 0;
-        //foreach (GameObject item in ObjectPooler.SharedInstance.pooledObjects)
-        //{
-        //    if (item.active)
-        //    {
-        //        Transform playerTransform = Player.Instance.transform;
+//        Debug.Log("Checking Visibility");
 
-        //        Debug.Log("Player position = " + playerTransform.position);
+//        int i = 0;
+//        foreach (GameObject item in ObjectPooler.Instance.pooledObjects)
+//        {
+//            //if (item.activeInHierarchy)
+//            //{
+//            //    playerTransform = Player.Instance.transform;
 
-        //        if (Vector3.Distance(playerTransform.position, item.transform.position) > sightRadius)
-        //        {
-        //            item.SetActive(false);
-        //        }
-        //        else
-        //        {
-        //            item.SetActive(true);
-        //        }
-        //    }
-        //    i++;
-        //}
-        //Debug.Log("Checked " + i + " objects");
+//            //    Debug.Log("Player position = " + playerTransform.position);
 
-        yield return new WaitForSeconds(1);
+//            //    if (Vector3.Distance(playerTransform.position, item.transform.position) > sightRadius)
+//            //    {
+//            //        item.SetActive(false);
+//            //    }
+//            //    else
+//            //    {
+//            //        item.SetActive(true);
+//            //    }
+//            //}
+//            //i++;
 
-        StartCoroutine("CheckVisibility");
-    }
-}
+//            playerTransform = Player.Instance.transform;
+
+//            Debug.Log("Player position = " + playerTransform.position);
+
+//            if (Vector3.Distance(playerTransform.position, item.transform.position) > sightRadius)
+//            {
+//                item.SetActive(false);
+//            }
+//            else
+//            {
+//                item.SetActive(true);
+//            }
+//        }
+//        Debug.Log("Checked " + i + " objects");
+
+//        yield return new WaitForSeconds(5);
+
+//        StartCoroutine("CheckVisibility");
+//    }
+//}

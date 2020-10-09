@@ -119,7 +119,7 @@ public class GameLevelGen : MonoBehaviour
         ResetLevels();
     }
 
-    private void Awake()
+    private void Start()
     {
         ResetLevels();
 
@@ -159,39 +159,39 @@ public class GameLevelGen : MonoBehaviour
         // TODO: check chunk distance and spawn and despawn by player radius
 
         Chunk spawnPointHub;
-        spawnPointHub = GenerateLevel("hub-1-0-start", 0, 0);
+        spawnPointHub = GenerateSubLevel("hub-1-0-start", 0, 0);
 
-        GenerateLevel("hub-1-1", 9, 0);
-        GenerateLevel("hub-1-1", 18, 0);
-        GenerateLevel("hub-1-1", 27, 0);
+        GenerateSubLevel("hub-1-1", 9, 0);
+        GenerateSubLevel("hub-1-1", 18, 0);
+        GenerateSubLevel("hub-1-1", 27, 0);
 
-        GenerateLevel("corner-bottomright", 36, 0);
+        GenerateSubLevel("corner-bottomright", 36, 0);
 
-        GenerateLevel("edge-vertical", 36, 9);
-        GenerateLevel("edge-vertical", 36, 18);
+        GenerateSubLevel("edge-vertical", 36, 9);
+        GenerateSubLevel("edge-vertical", 36, 18);
 
-        GenerateLevel("corner-topright", 36, 27);
+        GenerateSubLevel("corner-topright", 36, 27);
 
-        GenerateLevel("edge-horizontal", 27, 27);
-        GenerateLevel("edge-horizontal", 18, 27);
-        GenerateLevel("edge-horizontal", 9, 27);
+        GenerateSubLevel("edge-horizontal", 27, 27);
+        GenerateSubLevel("edge-horizontal", 18, 27);
+        GenerateSubLevel("edge-horizontal", 9, 27);
 
-        GenerateLevel("hub-1-1", 0, 27);
+        GenerateSubLevel("hub-1-1", 0, 27);
 
-        GenerateLevel("edge-horizontal", -9, 27);
-        GenerateLevel("edge-horizontal", -18, 27);
-        GenerateLevel("edge-horizontal", -27, 27);
+        GenerateSubLevel("edge-horizontal", -9, 27);
+        GenerateSubLevel("edge-horizontal", -18, 27);
+        GenerateSubLevel("edge-horizontal", -27, 27);
 
-        GenerateLevel("corner-topleft", -36, 27);
+        GenerateSubLevel("corner-topleft", -36, 27);
 
-        GenerateLevel("edge-vertical", -36, 18);
-        GenerateLevel("edge-vertical", -36, 9);
+        GenerateSubLevel("edge-vertical", -36, 18);
+        GenerateSubLevel("edge-vertical", -36, 9);
 
-        GenerateLevel("corner-bottomleft", -36, 0);
+        GenerateSubLevel("corner-bottomleft", -36, 0);
 
-        GenerateLevel("hub-1-1", -27, 0);
-        GenerateLevel("hub-1-1", -18, 0);
-        GenerateLevel("hub-1-1", -9, 0);
+        GenerateSubLevel("hub-1-1", -27, 0);
+        GenerateSubLevel("hub-1-1", -18, 0);
+        GenerateSubLevel("hub-1-1", -9, 0);
 
         Messenger.Broadcast(GameActionKeys.LevelLoaded);
 
@@ -232,7 +232,7 @@ public class GameLevelGen : MonoBehaviour
         return jsonLevelDictionary;
     }
 
-    public Chunk GenerateLevel(string code, int xOffset, int yOffset)
+    public Chunk GenerateSubLevel(string code, int xOffset, int yOffset)
     {
         LevelObject levelObject = levelObjectDictionary[code];
 

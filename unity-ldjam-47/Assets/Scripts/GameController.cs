@@ -33,8 +33,8 @@ public class GameActionKeys
 
 public class GameGlobals
 {
-    public static bool ProjectilesArePooled = true;
-    public static bool ObjectsArePooled = true;
+    public static bool ProjectilesArePooled = false;
+    public static bool ObjectsArePooled = false;
 }
 
 public class GameController : MonoBehaviour
@@ -271,6 +271,8 @@ public class GameController : MonoBehaviour
         UIOptionsMenu.SetActive(false);
 
         UIGame.SetActive(true);
+
+        //Messenger.Broadcast(GameActionKeys.gameResetState);
 
         FirstBendTransition();
     }

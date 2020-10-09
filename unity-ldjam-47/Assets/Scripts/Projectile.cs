@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("projectile collided with" + other.name);
+        //Debug.Log("projectile collided with" + other.name);
 
         if (other.tag == "enemy")
         {
@@ -44,9 +44,9 @@ public class Projectile : MonoBehaviour
 
     IEnumerator WaitForDestroy()
     {
-        Debug.Log("projectile coroutine");
+        //Debug.Log("projectile coroutine");
         yield return new WaitForSeconds(2);
         gameObject.DestroyGameObject();
-        Debug.Log("projectile destroy");
+        //Debug.Log("projectile destroy");
     }
 }
