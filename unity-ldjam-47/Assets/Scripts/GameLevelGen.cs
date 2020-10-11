@@ -84,6 +84,8 @@ public class GameLevelGen : MonoBehaviour
     private int hubWidth = 9;
     private int hubHeight = 9;
 
+    private int hubRadius = 4;
+
     private int dungeonWidth = 21;
 
 
@@ -275,7 +277,7 @@ public class GameLevelGen : MonoBehaviour
 
     private Chunk ParseLevelData(LevelObject levelObject, int xOffset, int yOffset)
     {
-        Debug.Log("started parsing level data");
+        // Debug.Log("started parsing level data");
 
         List<string> data = levelObject.Data;
 
@@ -286,7 +288,7 @@ public class GameLevelGen : MonoBehaviour
         chunk.Type = levelObject.Type;
 
 
-        ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubWidth + xOffset, hubHeight + yOffset);
+        ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubRadius + xOffset, hubRadius + yOffset);
 
         tempChunkCollider.parentChunk = chunk;
 

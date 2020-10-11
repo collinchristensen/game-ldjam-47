@@ -13,7 +13,7 @@ public class Coin : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            Debug.Log("collision with player: " + gameObject.name);
+            // Debug.Log("collision with player: " + gameObject.name);
 
             // add score
             Messenger.Broadcast<int>(GameActionKeys.playerScored, scoreAmount);

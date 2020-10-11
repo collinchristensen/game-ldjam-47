@@ -78,11 +78,11 @@ public class ChunkCollider : MonoBehaviour
     {
         float sightRadius = Player.Instance.sightRadius;
 
-        Debug.Log("Checking Visibility");
+        // Debug.Log("Checking Visibility");
 
         playerTransform = Player.Instance.transform;
 
-        Debug.Log("Player position = " + playerTransform.position);
+        // Debug.Log("Player position = " + playerTransform.position);
 
         if (Vector3.Distance(playerTransform.position, transform.position) > sightRadius)
         {
@@ -93,8 +93,8 @@ public class ChunkCollider : MonoBehaviour
             ShowChunk();
         }
 
-        float delay = UnityEngine.Random.Range(1f, 2f);
-        Debug.Log("Delay = " + delay);
+        float delay = UnityEngine.Random.Range(1f, 1.9f);
+        // Debug.Log("Delay = " + delay);
 
         yield return new WaitForSeconds(delay);
 

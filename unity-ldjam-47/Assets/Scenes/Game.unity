@@ -4268,12 +4268,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593025589}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb1ea0dd8ecb26942b2e4734bc737cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumPooledObjects: 5000
+  maximumPooledObjects: 3500
   pooledObjects:
   - {fileID: 7092469218131139733, guid: d08bc024800895647a66472621f0ffd9, type: 3}
   itemsToPool:
@@ -4312,6 +4312,9 @@ MonoBehaviour:
     shouldExpand: 1
   - prefabToPool: {fileID: 6621978083007181932, guid: 807024e02d842e949a59d1e4e97ee553, type: 3}
     amountToPool: 5
+    shouldExpand: 1
+  - prefabToPool: {fileID: 563030571491360874, guid: d48c0a0a44993c3448e1cc9aacb0f121, type: 3}
+    amountToPool: 23
     shouldExpand: 1
 --- !u!1 &1600809973
 GameObject:
@@ -4879,7 +4882,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5259,7 +5262,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3485119856164718783, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: sightRadius
-      value: 30
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7092469218131139733, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: m_Name

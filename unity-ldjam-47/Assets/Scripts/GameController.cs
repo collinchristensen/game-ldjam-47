@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
 
     private void OnPlayerScored(int scoreAmount)
     {
-        Debug.Log("scored: " + scoreAmount);
+        // Debug.Log("scored: " + scoreAmount);
     }
 
     private void OnPlayerSpawned()

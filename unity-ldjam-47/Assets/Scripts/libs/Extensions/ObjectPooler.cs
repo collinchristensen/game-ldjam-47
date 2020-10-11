@@ -72,6 +72,7 @@ public class ObjectPooler : MonoBehaviour
             if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name.Contains(name))
             {
                 //Debug.Log("\npooledObjectsname: " + pooledObjects[i].name + "\ngo.name: " + name + "\n\n\n");
+                // Debug.Log("Reused object");
                 return pooledObjects[i];
             }
         }
