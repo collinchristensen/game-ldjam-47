@@ -33,6 +33,8 @@ public class GameActionKeys
 
 public class GameGlobals
 {
+    public static bool LimitFrameRate = true;
+
     public static bool ProjectilesArePooled = true;
     public static bool ObjectsArePooled = true;
 }
@@ -110,7 +112,10 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        if (GameGlobals.LimitFrameRate)
+        {
+            Application.targetFrameRate = 60;
+        }
 
         ShowMainMenu();
 
