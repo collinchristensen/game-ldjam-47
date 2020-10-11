@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 87411131282a80d4783bbea2f8286a72, type: 3}
+    - {fileID: 2800000, guid: b5ac5bb3101843d4bb31ee28fdb5a3c6, type: 3}
+    - {fileID: 2800000, guid: bbbcc06891224264a80284b1b8797929, type: 3}
+    - {fileID: 2800000, guid: e99a7a55925ba6f42b1c3203f848f995, type: 3}
+    - {fileID: 2800000, guid: c82b348437bbc9546ae63272be1c0411, type: 3}
+    - {fileID: 2800000, guid: f1776a4127e8b0d4f84b55e5a936192c, type: 3}
+    - {fileID: 2800000, guid: c968af1aa170e864c82a6f69751808d3, type: 3}
+    - {fileID: 2800000, guid: d63e6350ce67a6c43a6c2022192c39ff, type: 3}
+    - {fileID: 2800000, guid: 7599b9ffe6d49d843ada35154539850e, type: 3}
+    - {fileID: 2800000, guid: cc78c00e20175ce4a94ed8986acebfb8, type: 3}
+    - {fileID: 2800000, guid: dab6469de39ebca4fbd16b13fd5febb1, type: 3}
+    - {fileID: 2800000, guid: f6e2d6b93c1b70d43b6842e854983284, type: 3}
+    - {fileID: 2800000, guid: e35a2818094b35243aa132bf630e5d0c, type: 3}
+    - {fileID: 2800000, guid: 9c2c25ebb31e319419992a2cf2758639, type: 3}
+    - {fileID: 2800000, guid: 36a886ea69c430848919d7f0a740d3ac, type: 3}
+    - {fileID: 2800000, guid: 5f6a6a1062965764bae300dccab28b13, type: 3}
+    - {fileID: 2800000, guid: 0aabc29b15b575046bbcc8b00297312f, type: 3}
+    - {fileID: 2800000, guid: 66f72c0e418a6c34a97de07c59343f72, type: 3}
+    totalSpriteSurfaceArea: 4608
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5f6a6a1062965764bae300dccab28b13, type: 3}
+  - {fileID: 21300000, guid: d63e6350ce67a6c43a6c2022192c39ff, type: 3}
+  - {fileID: 21300000, guid: 87411131282a80d4783bbea2f8286a72, type: 3}
+  - {fileID: 21300000, guid: f1776a4127e8b0d4f84b55e5a936192c, type: 3}
+  - {fileID: 21300000, guid: b5ac5bb3101843d4bb31ee28fdb5a3c6, type: 3}
+  - {fileID: 21300000, guid: c82b348437bbc9546ae63272be1c0411, type: 3}
+  - {fileID: 21300000, guid: e99a7a55925ba6f42b1c3203f848f995, type: 3}
+  - {fileID: 21300000, guid: e35a2818094b35243aa132bf630e5d0c, type: 3}
+  - {fileID: 21300000, guid: bbbcc06891224264a80284b1b8797929, type: 3}
+  - {fileID: 21300000, guid: f6e2d6b93c1b70d43b6842e854983284, type: 3}
+  - {fileID: 21300000, guid: c968af1aa170e864c82a6f69751808d3, type: 3}
+  - {fileID: 21300000, guid: 36a886ea69c430848919d7f0a740d3ac, type: 3}
+  - {fileID: 21300000, guid: 0aabc29b15b575046bbcc8b00297312f, type: 3}
+  - {fileID: 21300000, guid: 9c2c25ebb31e319419992a2cf2758639, type: 3}
+  - {fileID: 21300000, guid: dab6469de39ebca4fbd16b13fd5febb1, type: 3}
+  - {fileID: 21300000, guid: cc78c00e20175ce4a94ed8986acebfb8, type: 3}
+  - {fileID: 21300000, guid: 66f72c0e418a6c34a97de07c59343f72, type: 3}
+  - {fileID: 21300000, guid: 7599b9ffe6d49d843ada35154539850e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tile-wall2
+  - tile-actor-door2
+  - actor-specialblock
+  - tile-actor-coin
+  - actor-treasure
+  - enemy-wisp
+  - enemy-robot2
+  - tile-floor3
+  - enemy-robot
+  - tile-floor2
+  - tile-actor-door
+  - tile-wall1
+  - tile-wall3
+  - tile-floor4
+  - tile-floor1
+  - tile-actor-player
+  - tile-wall4
+  - tile-actor-exit
+  m_Tag: SpriteAtlas
+  m_IsVariant: 0
