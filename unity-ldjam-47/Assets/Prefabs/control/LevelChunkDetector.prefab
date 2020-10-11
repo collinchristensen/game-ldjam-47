@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 209553127087190099}
   - component: {fileID: 9034282028127560731}
   - component: {fileID: 2864998938935856027}
+  - component: {fileID: -1759990131462858597}
   m_Layer: 0
   m_Name: LevelChunkDetector
   m_TagString: Untagged
@@ -106,5 +107,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9254ab33e4f16994e9ed585a1359bd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1759990131462858597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563030571491360874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9db2f5da3e2d234fbd9c164cc86c2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

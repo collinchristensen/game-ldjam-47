@@ -93,7 +93,10 @@ public class ChunkCollider : MonoBehaviour
             ShowChunk();
         }
 
-        yield return new WaitForSeconds(1);
+        float delay = UnityEngine.Random.Range(1f, 2f);
+        Debug.Log("Delay = " + delay);
+
+        yield return new WaitForSeconds(delay);
 
         StartCoroutine("CheckVisibility");
     }
