@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
@@ -84,9 +85,12 @@ public class GameLevelGen : MonoBehaviour
     private int hubWidth = 9;
     private int hubHeight = 9;
 
-    private int hubRadius = 4;
+    private float hubRadius = 4.5f;
 
     private int dungeonWidth = 21;
+
+    private float floorXOffset = 4f;
+    private float floorYOffset = 6f;
 
 
     // path must end in  .json, file itself must end in .json.txt
@@ -287,14 +291,12 @@ public class GameLevelGen : MonoBehaviour
         Chunk chunk = new Chunk();
         chunk.Type = levelObject.Type;
 
-
         ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubRadius + xOffset, hubRadius + yOffset);
-
         tempChunkCollider.parentChunk = chunk;
-
         chunk.chunkCollider = tempChunkCollider;
 
-        
+        SpawnFullFloor(levelObject, floorXOffset + xOffset, floorYOffset + yOffset);
+
 
         List<List<GameObject>> chunkColumns = new List<List<GameObject>>();
 
@@ -308,9 +310,9 @@ public class GameLevelGen : MonoBehaviour
 
             foreach (char column in columns)
             {
-                GameObject permanentTile;
+                GameObject permanentTile = null;
 
-                GameObject temporaryItem;
+                GameObject temporaryItem = null;
 
                 bool isObstacle = true;
 
@@ -332,7 +334,7 @@ public class GameLevelGen : MonoBehaviour
                 }
                 else
                 {
-                    permanentTile = SpawnEmptyFloor(x, y);
+                    //permanentTile = SpawnEmptyFloor(x, y);
                     isObstacle = false;
                 }
 
@@ -358,7 +360,7 @@ public class GameLevelGen : MonoBehaviour
                     }
                     else if (column == GameAssetCodes.portal)
                     {
-                        permanentTile = SpawnPortal(x, y);
+                        //permanentTile = SpawnPortal(x, y);
                     }
                     else if (column == GameAssetCodes.coin)
                     {
@@ -378,11 +380,18 @@ public class GameLevelGen : MonoBehaviour
                     }
                 }
 
-                chunkRow.Add(permanentTile);
+                if (permanentTile != null)
+                {
+                    chunkRow.Add(permanentTile);
+                }
 
                 x++;
             }
-            chunkColumns.Add(chunkRow);
+
+            if (chunkRow.Count > 0)
+            {
+                chunkColumns.Add(chunkRow);
+            }
 
             y--;
         }
@@ -492,7 +501,8 @@ public class GameLevelGen : MonoBehaviour
         else
         {
             // spawn nothing
-            return SpawnEmptyFloor(x, y);
+            //return SpawnEmptyFloor(x, y);
+            return null;
         }
     }
 
@@ -513,14 +523,16 @@ public class GameLevelGen : MonoBehaviour
 
     private GameObject SpawnEmptyFloor(int x, int y)
     {
-        return SpawnRandomFloor(x, y);
+        //return SpawnRandomFloor(x, y);
+        return null;
     }
 
     private GameObject SpawnRandomFloor(int x, int y)
     {
-        int choice = Random.Range(0, assetHolder.floors.Count - 1);
+        //int choice = Random.Range(0, assetHolder.floors.Count - 1);
 
-        return assetHolder.SpawnObject(assetHolder.floors[choice], x, y);
+        //return assetHolder.SpawnObject(assetHolder.floors[choice], x, y);
+        return null;
     }
 
     private GameObject SpawnRandomEnemy(int x, int y)
@@ -537,11 +549,18 @@ public class GameLevelGen : MonoBehaviour
         return assetHolder.SpawnObject(assetHolder.walls[choice], x, y);
     }
 
-    private ChunkCollider SpawnChunkCollider(LevelObject levelObject, int x, int y)
+    private ChunkCollider SpawnChunkCollider(LevelObject levelObject, float  x, float y)
     {
-        GameObject chColliderObject = assetHolder.SpawnObject(assetHolder.levelChunkDetectorPrefab, x, y);
+        GameObject chColliderObject = assetHolder.SpawnCenteredObject(assetHolder.levelChunkDetectorPrefab, x, y);
 
         return chColliderObject.GetComponent<ChunkCollider>();
+    }
+
+    private GameObject SpawnFullFloor(LevelObject levelObject, float x, float y)
+    {
+        int choice = Random.Range(0, assetHolder.fullFloors.Count - 1);
+
+        return assetHolder.SpawnCenteredObject(assetHolder.fullFloors[choice], x, y);
     }
 
     public void DebugPrintLevelData()

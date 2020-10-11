@@ -2403,6 +2403,9 @@ MonoBehaviour:
   goldBlock: {fileID: 5106849288139541175, guid: fc260124f583f8a458136e9d292d819a, type: 3}
   levelChunkDetectorPrefab: {fileID: 563030571491360874, guid: d48c0a0a44993c3448e1cc9aacb0f121, type: 3}
   levelsTransform: {fileID: 1410204135}
+  fullFloors:
+  - {fileID: 5725067404888621418, guid: a16c9a6188cbe95488da29f34b4c9607, type: 3}
+  - {fileID: 124490868619497854, guid: d7258515fe2893847a2ead89a27d9bb4, type: 3}
 --- !u!4 &871172752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7092469218131139734, guid: d08bc024800895647a66472621f0ffd9, type: 3}

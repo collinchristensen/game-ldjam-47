@@ -25,7 +25,30 @@ public class AssetHolder : MonoBehaviour
 
     public Transform levelsTransform;
 
+    public List<GameObject> fullFloors;
+
     private Vector3 spawnPointVector;
+
+    public GameObject SpawnCenteredObject(GameObject go, float x, float y)
+    {
+        GameObject temp;
+
+        Vector3 pos = new Vector3(x, y);
+
+        if (GameGlobals.ObjectsArePooled)
+        {
+
+            temp = go.CreateGameObject(pos, Quaternion.identity, true);
+            temp.transform.SetParent(levelsTransform);
+        }
+        else
+        {
+            temp = Instantiate(go, pos, Quaternion.identity, levelsTransform);
+        }
+
+
+        return temp;
+    }
 
     public GameObject SpawnObject(GameObject go, int x, int y)
     {
