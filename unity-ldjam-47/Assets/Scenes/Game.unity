@@ -3987,6 +3987,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5b76848c3c84495429f2b93eaeafad28, type: 3}
   - {fileID: 8300000, guid: beadc2df92b938745a0eecaad9fc2ba8, type: 3}
   - {fileID: 8300000, guid: 3e143fa74ce438b48b44f00735d2043f, type: 3}
+  - {fileID: 8300000, guid: 5b76848c3c84495429f2b93eaeafad28, type: 3}
   defeatSound: {fileID: 8300000, guid: 71c8240d0fbacb749a477c19c7367b6b, type: 3}
   selectSound: {fileID: 8300000, guid: a6454c00576a94f419999bb0edf0e31f, type: 3}
   gameMusic: {fileID: 8300000, guid: f3509cc6485979c47ba9dc42b9d0b162, type: 3}
