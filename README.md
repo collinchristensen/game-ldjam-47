@@ -14,9 +14,16 @@ Controls: WASD or arrow keys to move, and move to shoot
 
 Version 0.1.2
 
-- Enemies play damage sound
-- Reduced sound effect volume
-- Adjusted text style in title screen
+- Optimization
+  - Added internal object pooler
+  - Spawn and despawn level chunks
+  - Batched floor tiles into larger mesh
+  - Packed sprites into sprite atlas
+
+- Style
+  - Enemies play damage sound
+  - Reduced sound effect volume
+  - Adjusted text style in title screen
 
 Version 0.1.1
 
