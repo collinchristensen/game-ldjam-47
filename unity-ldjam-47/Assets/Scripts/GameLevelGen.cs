@@ -63,7 +63,7 @@ public class LevelObject
 public class Chunk
 {
     public string Type { get; set; }
-
+    public ChunkCollider chunkCollider { get; set; }
     public List<List<GameObject>> Tiles { get; set; }
 }
 
@@ -85,7 +85,6 @@ public class GameLevelGen : MonoBehaviour
     private int hubHeight = 9;
 
     private int dungeonWidth = 21;
-
 
 
     // path must end in  .json, file itself must end in .json.txt
@@ -285,6 +284,15 @@ public class GameLevelGen : MonoBehaviour
 
         Chunk chunk = new Chunk();
         chunk.Type = levelObject.Type;
+
+
+        ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubWidth + xOffset, hubHeight + yOffset);
+
+        tempChunkCollider.parentChunk = chunk;
+
+        chunk.chunkCollider = tempChunkCollider;
+
+        
 
         List<List<GameObject>> chunkColumns = new List<List<GameObject>>();
 
@@ -525,6 +533,13 @@ public class GameLevelGen : MonoBehaviour
         int choice = Random.Range(0, assetHolder.walls.Count - 1);
 
         return assetHolder.SpawnObject(assetHolder.walls[choice], x, y);
+    }
+
+    private ChunkCollider SpawnChunkCollider(LevelObject levelObject, int x, int y)
+    {
+        GameObject chColliderObject = assetHolder.SpawnObject(assetHolder.levelChunkDetectorPrefab, x, y);
+
+        return chColliderObject.GetComponent<ChunkCollider>();
     }
 
     public void DebugPrintLevelData()

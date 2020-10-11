@@ -2401,6 +2401,7 @@ MonoBehaviour:
   coin: {fileID: 8934616860536004040, guid: a395cf71d9457524f811fa5213b4dd45, type: 3}
   treasure: {fileID: 798280831653865977, guid: 5c8335a8b30a84a439531e8b01248441, type: 3}
   goldBlock: {fileID: 5106849288139541175, guid: fc260124f583f8a458136e9d292d819a, type: 3}
+  levelChunkDetectorPrefab: {fileID: 563030571491360874, guid: d48c0a0a44993c3448e1cc9aacb0f121, type: 3}
   levelsTransform: {fileID: 1410204135}
 --- !u!4 &871172752 stripped
 Transform:
@@ -5258,7 +5259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3485119856164718783, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: sightRadius
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7092469218131139733, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: m_Name
@@ -5274,7 +5275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092469218131139734, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7092469218131139734, guid: d08bc024800895647a66472621f0ffd9, type: 3}
       propertyPath: m_LocalPosition.z

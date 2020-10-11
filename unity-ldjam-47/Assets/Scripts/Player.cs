@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     Vector3 move;
 
-    public float sightRadius = 4.0f;
+    public float sightRadius = 30f;
 
     public static Player _instance;
 
@@ -120,5 +120,11 @@ public class Player : MonoBehaviour
         controller.enabled = false;
         transform.position = new Vector3(x, y, 0f);
         controller.enabled = true;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireSphere(transform.position, sightRadius);
     }
 }

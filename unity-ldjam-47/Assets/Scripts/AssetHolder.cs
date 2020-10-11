@@ -21,6 +21,8 @@ public class AssetHolder : MonoBehaviour
 
     //public GameObject ladder;
 
+    public GameObject levelChunkDetectorPrefab;
+
     public Transform levelsTransform;
 
     private Vector3 spawnPointVector;
