@@ -89,8 +89,8 @@ public class GameLevelGen : MonoBehaviour
 
     private int dungeonWidth = 21;
 
-    private float floorXOffset = 4f;
-    private float floorYOffset = 6f;
+    private float hubXOffset = 4f;
+    private float hubYOffset = 5f;
 
 
     // path must end in  .json, file itself must end in .json.txt
@@ -291,11 +291,11 @@ public class GameLevelGen : MonoBehaviour
         Chunk chunk = new Chunk();
         chunk.Type = levelObject.Type;
 
-        ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubRadius + xOffset, hubRadius + yOffset);
+        ChunkCollider tempChunkCollider = SpawnChunkCollider(levelObject, hubXOffset + xOffset, hubYOffset + yOffset);
         tempChunkCollider.parentChunk = chunk;
         chunk.chunkCollider = tempChunkCollider;
 
-        SpawnFullFloor(levelObject, floorXOffset + xOffset, floorYOffset + yOffset);
+        SpawnFullFloor(levelObject, hubXOffset + xOffset, hubYOffset + yOffset);
 
 
         List<List<GameObject>> chunkColumns = new List<List<GameObject>>();
