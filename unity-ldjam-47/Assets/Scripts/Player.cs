@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(x, y, 0f);
         controller.enabled = true;
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
